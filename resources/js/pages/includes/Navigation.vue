@@ -5,7 +5,7 @@
                 <span class="pr-2 lg:ml-0 ml-3">
                     <i class="fa-solid fa-bug text-3xl"></i>
                 </span>
-                <span>BugTracker</span>
+                <span>Project Management</span>
                 <div class="text-sm font-normal ml-12">
                     <router-link class="mr-3" to="/">Home</router-link>
                     <router-link v-if="isLoggedIn" class="mr-3" to="/dashboard"
