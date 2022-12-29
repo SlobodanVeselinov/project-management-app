@@ -22,7 +22,7 @@
 <br>
 
 `npm run watch`
-<br><br>
+<br>
 ----------
 <p>Credentioals to log in to the application:</p>
 <p>
