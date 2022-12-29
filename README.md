@@ -1,7 +1,8 @@
 # Project Management Application
 ## Vue.js Single page application with Laravel backend API
 <br>
-### Installation Instructions
+### Installation Instructions<br>
+
 `git clone https://github.com/SlobodanVeselinov/project-management-app.git`
 <br>
 
