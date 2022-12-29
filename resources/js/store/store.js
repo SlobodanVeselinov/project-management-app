@@ -196,6 +196,20 @@ const store = createStore({
                 });
         },
 
+        assignDeveloper({ dispatch }, payload) {
+            this.commit("setLoading", true);
+            axios
+                .post(`${config.apiUrl}/assign-developer-to-ticket`, payload)
+                .then(() => {
+                    dispatch("getTicketWithDetails", payload.ticket_id);
+                    this.commit("setLoading", false);
+                    // console.log(response.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
         createTicket({ dispatch }, payload) {
             this.commit("setLoading", true);
             axios

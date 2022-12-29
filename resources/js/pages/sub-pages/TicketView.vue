@@ -1,4 +1,8 @@
 <template>
+		<AssignDeveloperToTicketModal 
+			v-if="showModal" 
+			@closeModal="closeModal" 
+        />
 	<div class="p-5">
 		<div class="p-5 w-full bg-white mb-5 flex justify-between">
 			<h3 class="font-semibold">Ticket Details</h3>
@@ -26,7 +30,9 @@
 				</p>
 				<p class="font-semibold border-b mb-3">Developers:</p>
 				<ul v-for="user in ticket.users" :key="user.id">
-					<li v-if="user.role_id !== 2 && user.role_id !== 1">{{ user.name }}</li>
+					<li v-if="user.role_id !== 2 && user.role_id !== 1">
+						{{ user.name }} 
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -51,15 +57,25 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-
+import AssignDeveloperToTicketModal from '../../components/AssignDeveloperToTicketModal.vue';
 export default {
+	components: {
+		AssignDeveloperToTicketModal,
+	},
 	data(){
 		return {
+			showModal: false,
 			projectManager: '',
 		}
 	},
     methods: {
         ...mapActions(["getTicketWithDetails"]),
+		 openModal() {
+            this.showModal = true;
+        },
+        closeModal() {
+            this.showModal = false;
+        },
     },
 
     computed: {

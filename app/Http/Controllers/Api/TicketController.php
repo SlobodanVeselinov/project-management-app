@@ -61,4 +61,11 @@ class TicketController extends Controller
 
         return $ticket;
     }
+
+    public function assignDeveloper(Request $request){
+        $ticket = Ticket::findOrFail($request->ticket_id);
+        $ticket->users()->attach($request->developer_id);
+
+        return $ticket;
+    }
 }

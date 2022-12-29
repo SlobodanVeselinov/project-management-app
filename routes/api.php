@@ -31,6 +31,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/projects/tickets/{ticket_id}', [TicketController::class, 'getTicket']);
     Route::get('/user/{user_id}/tickets', [TicketController::class, 'getUserTickets']);
     Route::post('/createTicket', [TicketController::class, 'createTicket']);
+    Route::post('/assign-developer-to-ticket', [TicketController::class, 'assignDeveloper']);
     ////////////////
 
 
