@@ -196,6 +196,20 @@ const store = createStore({
                 });
         },
 
+        createTicket({ dispatch }, payload) {
+            this.commit("setLoading", true);
+            axios
+                .post(`${config.apiUrl}/createTicket`, payload)
+                .then((response) => {
+                    dispatch("getTickets", response.data.project_id);
+                    this.commit("setLoading", false);
+                    // console.log(response.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
         createUser({ dispatch }, payload) {
             this.commit("setLoading", true);
             axios

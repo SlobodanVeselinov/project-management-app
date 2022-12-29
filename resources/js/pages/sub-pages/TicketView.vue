@@ -1,7 +1,13 @@
 <template>
 	<div class="p-5">
-		<div class="p-5 w-full bg-white mb-5">
+		<div class="p-5 w-full bg-white mb-5 flex justify-between">
 			<h3 class="font-semibold">Ticket Details</h3>
+			<button v-if="user.role_id == 1 || user.role_id == 2"
+                        class="py-2 px-3 bg-blue-600 hover:bg-blue-700 transition duration-150 ease-in-out text-white text-sm rounded w-full lg:w-auto"
+                         @click="openModal"
+                    >
+                        Assign developer to this ticket
+                    </button>
 		</div>
 
 		<div class="lg:grid grid-cols-2 gap-5">
@@ -57,7 +63,7 @@ export default {
     },
 
     computed: {
-        ...mapState(["ticket", "loading"]),
+        ...mapState(["ticket", "loading", "user"]),
     },
 
     mounted() {

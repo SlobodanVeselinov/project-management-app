@@ -7,6 +7,7 @@ use App\Models\Ticket;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
 {
@@ -44,5 +45,20 @@ class TicketController extends Controller
         return Ticket::with('users')->whereHas('users', function($query) use($user_id){
         $query->where('user_id', '=', $user_id);
     })->get();
+    }
+
+
+    //Creates a new tickets for a specific user
+    public function createTicket(Request $request){
+        $ticket = new Ticket();
+        $ticket->project_id = $request->project_id;
+        $ticket->title = $request->title;
+        $ticket->description = $request->description;
+        $ticket->save();
+        $user_id = Auth::user()->id;
+
+        $ticket->users()->attach($user_id);
+
+        return $ticket;
     }
 }

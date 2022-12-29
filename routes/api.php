@@ -30,6 +30,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/projects/{project_id}/tickets/{user_id}', [TicketController::class, 'getTickets']);
     Route::get('/projects/tickets/{ticket_id}', [TicketController::class, 'getTicket']);
     Route::get('/user/{user_id}/tickets', [TicketController::class, 'getUserTickets']);
+    Route::post('/createTicket', [TicketController::class, 'createTicket']);
     ////////////////
 
 
