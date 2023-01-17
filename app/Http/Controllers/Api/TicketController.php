@@ -68,4 +68,11 @@ class TicketController extends Controller
 
         return $ticket;
     }
+
+     public function removeDeveloper(Request $request){
+        $ticket = Ticket::findOrFail($request->ticket_id);
+        $ticket->users()->detach($request->developer_id);
+
+        return $ticket;
+    }
 }

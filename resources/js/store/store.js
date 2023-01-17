@@ -210,6 +210,18 @@ const store = createStore({
                 });
         },
 
+        removeDeveloperFromTicket({ dispatch }, payload) {
+            axios
+                .post(`${config.apiUrl}/remove-developer-to-ticket`, payload)
+                .then(() => {
+                    dispatch("getTicketWithDetails", payload.ticket_id);
+                    // console.log(response.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
         createTicket({ dispatch }, payload) {
             this.commit("setLoading", true);
             axios

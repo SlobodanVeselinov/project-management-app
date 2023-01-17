@@ -26,10 +26,11 @@
                         v-model="form.developer_id"
                         class="w-full">
                         <option 
-                            v-for="user in allUsers"
-                            :key="user.id" 
-                            :value="user.id">
-                                {{ user.name }} - {{ user.role.name }}</option>
+                            v-for="developer in assignedDevelopers"
+                            :key="developer.id" 
+                            :value="developer.id">
+                                {{ developer.name }}
+                        </option>
                     </select>
                 </div>
             </div>
@@ -76,7 +77,7 @@ export default {
         },
     },
     computed: {
-        ...mapState(["allUsers"]),
+        ...mapState(["allUsers", "assignedDevelopers"]),
     },
 };
 </script>

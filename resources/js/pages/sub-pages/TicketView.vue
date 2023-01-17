@@ -29,9 +29,19 @@
 					class="font-semibold mb-5">Project manager: {{ projectManager.name }}
 				</p>
 				<p class="font-semibold border-b mb-3">Developers:</p>
+				<div 
+					v-if="!developers"
+					class="text-sm">
+					No developers are assigned to this ticket yet!
+				</div>
 				<ul v-for="user in ticket.users" :key="user.id">
 					<li v-if="user.role_id !== 2 && user.role_id !== 1">
-						{{ user.name }} 
+						{{ user.name }} - 
+						<span 
+							@click="removeDeveloper(user.id)"
+							class="text-sm text-red-600 cursor-pointer">
+							Remove
+						</span>
 					</li>
 				</ul>
 			</div>
@@ -66,10 +76,18 @@ export default {
 		return {
 			showModal: false,
 			projectManager: '',
+			form: {
+                developer_id: "",
+                ticket_id: this.$route.params.t_id,
+            },
 		}
 	},
     methods: {
-        ...mapActions(["getTicketWithDetails"]),
+        ...mapActions(["getTicketWithDetails", "removeDeveloperFromTicket"]),
+		removeDeveloper(id){
+			this.form.developer_id = id
+			this.removeDeveloperFromTicket(this.form)
+		},
 		 openModal() {
             this.showModal = true;
         },
@@ -80,11 +98,13 @@ export default {
 
     computed: {
         ...mapState(["ticket", "loading", "user"]),
+		developers(){
+			return this.ticket.users.find(d => d.role_id == 3)
+		},
     },
 
     mounted() {
         this.getTicketWithDetails(this.$route.params.t_id);
-        // console.log(this.$route.params.t_id)
 		this.projectManager = this.ticket.users.find(u => u.role_id == 2)
     },
 };

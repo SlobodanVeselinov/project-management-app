@@ -23448,7 +23448,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.closeModal();
     }
   }),
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)(["allUsers"]))
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)(["allUsers", "assignedDevelopers"]))
 });
 
 /***/ }),
@@ -24248,10 +24248,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       showModal: false,
-      projectManager: ''
+      projectManager: '',
+      form: {
+        developer_id: "",
+        ticket_id: this.$route.params.t_id
+      }
     };
   },
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)(["getTicketWithDetails"])), {}, {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)(["getTicketWithDetails", "removeDeveloperFromTicket"])), {}, {
+    removeDeveloper: function removeDeveloper(id) {
+      this.form.developer_id = id;
+      this.removeDeveloperFromTicket(this.form);
+    },
     openModal: function openModal() {
       this.showModal = true;
     },
@@ -24259,10 +24267,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.showModal = false;
     }
   }),
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["ticket", "loading", "user"])),
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["ticket", "loading", "user"])), {}, {
+    developers: function developers() {
+      return this.ticket.users.find(function (d) {
+        return d.role_id == 3;
+      });
+    }
+  }),
   mounted: function mounted() {
-    this.getTicketWithDetails(this.$route.params.t_id); // console.log(this.$route.params.t_id)
-
+    this.getTicketWithDetails(this.$route.params.t_id);
     this.projectManager = this.ticket.users.find(function (u) {
       return u.role_id == 2;
     });
@@ -24521,11 +24534,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $data.form.developer_id = $event;
     }),
     "class": "w-full"
-  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.allUsers, function (user) {
+  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.assignedDevelopers, function (developer) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
-      key: user.id,
-      value: user.id
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.name) + " - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.role.name), 9
+      key: developer.id,
+      value: developer.id
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(developer.name), 9
     /* TEXT, PROPS */
     , _hoisted_8);
   }), 128
@@ -26540,10 +26553,15 @@ var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_11 = {
+  key: 1,
+  "class": "text-sm"
+};
+var _hoisted_12 = {
   key: 0
 };
+var _hoisted_13 = ["onClick"];
 
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"p-5 w-full bg-white mb-5\"><h3 class=\"font-semibold border-b mb-5\">Notes:</h3><div class=\"my-5\"><strong>David Veselinov</strong> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minima veritatis itaque deserunt, molestiae fugit eum molestias est doloribus, reprehenderit earum, rem culpa eius ipsam voluptatum beatae quis cum perspiciatis. </div><div class=\"my-5\"><strong>Jovan Veselinov</strong> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minima veritatis itaque deserunt, molestiae fugit eum molestias est doloribus, reprehenderit earum, rem culpa eius ipsam voluptatum beatae quis cum perspiciatis. </div><div class=\"my-5\"><strong>David Veselinov</strong> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minima veritatis itaque deserunt, molestiae fugit eum molestias est doloribus, reprehenderit earum, rem culpa eius ipsam voluptatum beatae quis cum perspiciatis. </div></div>", 1);
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"p-5 w-full bg-white mb-5\"><h3 class=\"font-semibold border-b mb-5\">Notes:</h3><div class=\"my-5\"><strong>David Veselinov</strong> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minima veritatis itaque deserunt, molestiae fugit eum molestias est doloribus, reprehenderit earum, rem culpa eius ipsam voluptatum beatae quis cum perspiciatis. </div><div class=\"my-5\"><strong>Jovan Veselinov</strong> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minima veritatis itaque deserunt, molestiae fugit eum molestias est doloribus, reprehenderit earum, rem culpa eius ipsam voluptatum beatae quis cum perspiciatis. </div><div class=\"my-5\"><strong>David Veselinov</strong> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minima veritatis itaque deserunt, molestiae fugit eum molestias est doloribus, reprehenderit earum, rem culpa eius ipsam voluptatum beatae quis cum perspiciatis. </div></div>", 1);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_AssignDeveloperToTicketModal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("AssignDeveloperToTicketModal");
@@ -26565,15 +26583,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, $data.projectManager ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_9, "Project manager: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.projectManager.name), 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_10, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.ticket.users, function (user) {
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_10, !$options.developers ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, " No developers are assigned to this ticket yet! ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.ticket.users, function (user) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", {
       key: user.id
-    }, [user.role_id !== 2 && user.role_id !== 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.name), 1
+    }, [user.role_id !== 2 && user.role_id !== 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.name) + " - ", 1
     /* TEXT */
-    )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+      onClick: function onClick($event) {
+        return $options.removeDeveloper(user.id);
+      },
+      "class": "text-sm text-red-600 cursor-pointer"
+    }, " Remove ", 8
+    /* PROPS */
+    , _hoisted_13)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])]), _hoisted_12])], 64
+  ))])]), _hoisted_14])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -26994,10 +27019,18 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         console.log(error);
       });
     },
-    createTicket: function createTicket(_ref3, payload) {
+    removeDeveloperFromTicket: function removeDeveloperFromTicket(_ref3, payload) {
+      var dispatch = _ref3.dispatch;
+      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/remove-developer-to-ticket"), payload).then(function () {
+        dispatch("getTicketWithDetails", payload.ticket_id); // console.log(response.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    createTicket: function createTicket(_ref4, payload) {
       var _this4 = this;
 
-      var dispatch = _ref3.dispatch;
+      var dispatch = _ref4.dispatch;
       this.commit("setLoading", true);
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/createTicket"), payload).then(function (response) {
         dispatch("getTickets", response.data.project_id);
@@ -27008,10 +27041,10 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         console.log(error);
       });
     },
-    createUser: function createUser(_ref4, payload) {
+    createUser: function createUser(_ref5, payload) {
       var _this5 = this;
 
-      var dispatch = _ref4.dispatch;
+      var dispatch = _ref5.dispatch;
       this.commit("setLoading", true);
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/createUser"), payload).then(function () {
         dispatch("getAllUsers");
@@ -27022,8 +27055,8 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         console.log(error);
       });
     },
-    addToTeam: function addToTeam(_ref5, payload) {
-      var dispatch = _ref5.dispatch;
+    addToTeam: function addToTeam(_ref6, payload) {
+      var dispatch = _ref6.dispatch;
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/addTeamMember"), payload).then(function () {
         dispatch("getDevelopers", payload.project_id);
         dispatch("getFreeDevelopers", payload.project_id);
@@ -27031,8 +27064,8 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         console.log(error);
       });
     },
-    removeFromTeam: function removeFromTeam(_ref6, payload) {
-      var dispatch = _ref6.dispatch;
+    removeFromTeam: function removeFromTeam(_ref7, payload) {
+      var dispatch = _ref7.dispatch;
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/removeTeamMember"), payload).then(function () {
         dispatch("getDevelopers", payload.project_id);
         dispatch("getFreeDevelopers", payload.project_id);
@@ -27040,18 +27073,18 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         console.log(error);
       });
     },
-    updateChanges: function updateChanges(_ref7, payload) {
-      var dispatch = _ref7.dispatch;
+    updateChanges: function updateChanges(_ref8, payload) {
+      var dispatch = _ref8.dispatch;
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/updateUser"), payload).then(function (response) {
         dispatch("getAllUsers");
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    registerUser: function registerUser(_ref8, form) {
+    registerUser: function registerUser(_ref9, form) {
       var _this6 = this;
 
-      var dispatch = _ref8.dispatch;
+      var dispatch = _ref9.dispatch;
       axios.post("/api/register", form).then(function () {
         _this6.state.errors = null;
 
@@ -27062,10 +27095,10 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         _this6.commit("setErrors", error.response.data.errors);
       });
     },
-    loginUser: function loginUser(_ref9, formData) {
+    loginUser: function loginUser(_ref10, formData) {
       var _this7 = this;
 
-      var dispatch = _ref9.dispatch;
+      var dispatch = _ref10.dispatch;
       axios.get("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/sanctum/csrf-cookie")).then(function () {
         // Login...
         axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/login"), formData).then(function () {
@@ -27081,8 +27114,8 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         });
       });
     },
-    removeUser: function removeUser(_ref10, payload) {
-      var dispatch = _ref10.dispatch;
+    removeUser: function removeUser(_ref11, payload) {
+      var dispatch = _ref11.dispatch;
       this.commit("setLoading", true);
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/deleteUser"), payload).then(function (response) {
         dispatch("getAllUsers");
