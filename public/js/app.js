@@ -23453,6 +23453,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ConfirmProjectDeleteModal.vue?vue&type=script&lang=js":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ConfirmProjectDeleteModal.vue?vue&type=script&lang=js ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["project"],
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)(["deleteProject"])), {}, {
+    closeConfirmationModal: function closeConfirmationModal() {
+      this.$emit("closeConfirmationModal");
+    },
+    deleteP: function deleteP() {
+      this.deleteProject(this.project.id);
+      this.$emit("closeConfirmationModal");
+    }
+  })
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ConfirmUserDeleteModal.vue?vue&type=script&lang=js":
 /*!****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ConfirmUserDeleteModal.vue?vue&type=script&lang=js ***!
@@ -24199,7 +24233,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _components_Tickets_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../components/Tickets.vue */ "./resources/js/components/Tickets.vue");
 /* harmony import */ var _components_NewTeamMemberModal_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../components/NewTeamMemberModal.vue */ "./resources/js/components/NewTeamMemberModal.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var _components_ConfirmProjectDeleteModal_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/ConfirmProjectDeleteModal.vue */ "./resources/js/components/ConfirmProjectDeleteModal.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -24209,25 +24244,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     Tickets: _components_Tickets_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    NewTeamMemberModal: _components_NewTeamMemberModal_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    NewTeamMemberModal: _components_NewTeamMemberModal_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    ConfirmProjectDeleteModal: _components_ConfirmProjectDeleteModal_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
       project: {},
       showDescription: false,
-      showModal: false
+      showModal: false,
+      showConfirmationModal: false
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)(["user", "assignedDevelopers", "allProjects"])),
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapActions)(["getDevelopers"])), {}, {
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)(["user", "assignedDevelopers", "allProjects"])),
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapActions)(["getDevelopers", "deleteProject"])), {}, {
     openModal: function openModal() {
       this.showModal = true;
     },
     closeModal: function closeModal() {
       this.showModal = false;
+    },
+    openConfirmationModal: function openConfirmationModal() {
+      this.showConfirmationModal = true;
+    },
+    closeConfirmationModal: function closeConfirmationModal() {
+      this.showConfirmationModal = false;
+    },
+    deleteP: function deleteP() {
+      this.deleteProject(this.project.id);
     }
   }),
   mounted: function mounted() {
@@ -24578,6 +24625,67 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.closeModal && $options.closeModal.apply($options, arguments);
     })
   }, " Close ")])])]);
+}
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ConfirmProjectDeleteModal.vue?vue&type=template&id=08e35d24":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ConfirmProjectDeleteModal.vue?vue&type=template&id=08e35d24 ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  "class": "fixed inset-0 bg-gray-600 bg-opacity-50 backdrop-blur-sm overflow-y-auto h-full w-full"
+};
+var _hoisted_2 = {
+  "class": "relative top-20 mx-auto p-5 border lg:w-2/5 w-full shadow-lg rounded-md bg-white"
+};
+var _hoisted_3 = {
+  "class": "flex justify-between border-b mb-5"
+};
+
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "mb-3"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "w-full"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+  "class": "text-sm text-red-500"
+}, "Are you sure you want to delete this project from the database? This can`t be undone!")])], -1
+/* HOISTED */
+);
+
+var _hoisted_6 = {
+  "class": "border-t pt-5 mt-5"
+};
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" MODAL HEADER "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    onClick: _cache[0] || (_cache[0] = function () {
+      return $options.closeConfirmationModal && $options.closeConfirmationModal.apply($options, arguments);
+    }),
+    "class": "cursor-pointer rotate-45 text-3xl"
+  }, "+")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" MODAL BODY "), _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" MODAL FOOTER "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "border rounded border-red-500 text-sm text-red-500 mr-2 px-3 py-2 hover:bg-red-500 hover:text-white transition duration-150 ease-in-out",
+    onClick: _cache[1] || (_cache[1] = function () {
+      return $options.deleteP && $options.deleteP.apply($options, arguments);
+    })
+  }, " Yes, delete it! "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "border rounded text-sm px-3 py-2 hover:bg-gray-300 transition duration-150 ease-in-out",
+    onClick: _cache[2] || (_cache[2] = function () {
+      return $options.closeConfirmationModal && $options.closeConfirmationModal.apply($options, arguments);
+    })
+  }, " Cancel ")])])]);
 }
 
 /***/ }),
@@ -26520,6 +26628,8 @@ var _hoisted_22 = {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_NewTeamMemberModal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("NewTeamMemberModal");
 
+  var _component_ConfirmProjectDeleteModal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ConfirmProjectDeleteModal");
+
   var _component_Tickets = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Tickets");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, null, {
@@ -26535,9 +26645,28 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, null, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [$data.showConfirmationModal ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ConfirmProjectDeleteModal, {
+        key: 0,
+        onCloseConfirmationModal: $options.closeConfirmationModal,
+        project: $data.project
+      }, null, 8
+      /* PROPS */
+      , ["onCloseConfirmationModal", "project"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+    }),
+    _: 1
+    /* STABLE */
+
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [$data.project ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.project.name), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.project.start_date), 1
+  )]), _ctx.user.role_id == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+    key: 0,
+    "class": "mb-5 w-full border border-red-500 text-red-500 py-2 rounded text-center cursor-pointer",
+    onClick: _cache[0] || (_cache[0] = function () {
+      return $options.openConfirmationModal && $options.openConfirmationModal.apply($options, arguments);
+    })
+  }, " Delete Project ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.project.start_date), 1
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.project.end_date), 1
   /* TEXT */
@@ -26552,11 +26681,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   ))]), _ctx.user.role_id == 2 || _ctx.user.role_id == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 0,
     "class": "py-2 px-3 bg-blue-600 hover:bg-blue-700 transition duration-150 ease-in-out text-white text-sm rounded",
-    onClick: _cache[0] || (_cache[0] = function () {
+    onClick: _cache[1] || (_cache[1] = function () {
       return $options.openModal && $options.openModal.apply($options, arguments);
     })
   }, " Assign Team Member ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-    onClick: _cache[1] || (_cache[1] = function ($event) {
+    onClick: _cache[2] || (_cache[2] = function ($event) {
       return $data.showDescription = !$data.showDescription;
     }),
     "class": "fa-solid fa-ellipsis cursor-pointer"
@@ -27125,35 +27254,30 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         console.log(error);
       });
     },
-    assignDeveloper: function assignDeveloper(_ref2, payload) {
+    deleteProject: function deleteProject(_ref2, projectId) {
       var _this3 = this;
 
       var dispatch = _ref2.dispatch;
       this.commit("setLoading", true);
-      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/assign-developer-to-ticket"), payload).then(function () {
-        dispatch("getTicketWithDetails", payload.ticket_id);
+      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/deleteProject/") + projectId).then(function () {
+        dispatch("getProjects");
 
-        _this3.commit("setLoading", false); // console.log(response.data);
+        _this3.commit("setLoading", false);
 
+        _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
+          name: "projects"
+        }); // console.log(response.data);
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    removeDeveloperFromTicket: function removeDeveloperFromTicket(_ref3, payload) {
-      var dispatch = _ref3.dispatch;
-      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/remove-developer-to-ticket"), payload).then(function () {
-        dispatch("getTicketWithDetails", payload.ticket_id); // console.log(response.data);
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    createTicket: function createTicket(_ref4, payload) {
+    assignDeveloper: function assignDeveloper(_ref3, payload) {
       var _this4 = this;
 
-      var dispatch = _ref4.dispatch;
+      var dispatch = _ref3.dispatch;
       this.commit("setLoading", true);
-      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/createTicket"), payload).then(function (response) {
-        dispatch("getTickets", response.data.project_id);
+      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/assign-developer-to-ticket"), payload).then(function () {
+        dispatch("getTicketWithDetails", payload.ticket_id);
 
         _this4.commit("setLoading", false); // console.log(response.data);
 
@@ -27161,13 +27285,21 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         console.log(error);
       });
     },
-    createUser: function createUser(_ref5, payload) {
+    removeDeveloperFromTicket: function removeDeveloperFromTicket(_ref4, payload) {
+      var dispatch = _ref4.dispatch;
+      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/remove-developer-to-ticket"), payload).then(function () {
+        dispatch("getTicketWithDetails", payload.ticket_id); // console.log(response.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    createTicket: function createTicket(_ref5, payload) {
       var _this5 = this;
 
       var dispatch = _ref5.dispatch;
       this.commit("setLoading", true);
-      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/createUser"), payload).then(function () {
-        dispatch("getAllUsers");
+      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/createTicket"), payload).then(function (response) {
+        dispatch("getTickets", response.data.project_id);
 
         _this5.commit("setLoading", false); // console.log(response.data);
 
@@ -27175,8 +27307,22 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         console.log(error);
       });
     },
-    addToTeam: function addToTeam(_ref6, payload) {
+    createUser: function createUser(_ref6, payload) {
+      var _this6 = this;
+
       var dispatch = _ref6.dispatch;
+      this.commit("setLoading", true);
+      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/createUser"), payload).then(function () {
+        dispatch("getAllUsers");
+
+        _this6.commit("setLoading", false); // console.log(response.data);
+
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    addToTeam: function addToTeam(_ref7, payload) {
+      var dispatch = _ref7.dispatch;
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/addTeamMember"), payload).then(function () {
         dispatch("getDevelopers", payload.project_id);
         dispatch("getFreeDevelopers", payload.project_id);
@@ -27184,8 +27330,8 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         console.log(error);
       });
     },
-    removeFromTeam: function removeFromTeam(_ref7, payload) {
-      var dispatch = _ref7.dispatch;
+    removeFromTeam: function removeFromTeam(_ref8, payload) {
+      var dispatch = _ref8.dispatch;
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/removeTeamMember"), payload).then(function () {
         dispatch("getDevelopers", payload.project_id);
         dispatch("getFreeDevelopers", payload.project_id);
@@ -27193,49 +27339,49 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         console.log(error);
       });
     },
-    updateChanges: function updateChanges(_ref8, payload) {
-      var dispatch = _ref8.dispatch;
+    updateChanges: function updateChanges(_ref9, payload) {
+      var dispatch = _ref9.dispatch;
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/updateUser"), payload).then(function (response) {
         dispatch("getAllUsers");
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    registerUser: function registerUser(_ref9, form) {
-      var _this6 = this;
-
-      var dispatch = _ref9.dispatch;
-      axios.post("/api/register", form).then(function () {
-        _this6.state.errors = null;
-
-        _this6.$router.push({
-          name: "login"
-        });
-      })["catch"](function (error) {
-        _this6.commit("setErrors", error.response.data.errors);
-      });
-    },
-    loginUser: function loginUser(_ref10, formData) {
+    registerUser: function registerUser(_ref10, form) {
       var _this7 = this;
 
       var dispatch = _ref10.dispatch;
+      axios.post("/api/register", form).then(function () {
+        _this7.state.errors = null;
+
+        _this7.$router.push({
+          name: "login"
+        });
+      })["catch"](function (error) {
+        _this7.commit("setErrors", error.response.data.errors);
+      });
+    },
+    loginUser: function loginUser(_ref11, formData) {
+      var _this8 = this;
+
+      var dispatch = _ref11.dispatch;
       axios.get("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/sanctum/csrf-cookie")).then(function () {
         // Login...
         axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/login"), formData).then(function () {
           dispatch("getLoggedUser");
           dispatch("getProjects");
-          _this7.state.errors = null;
+          _this8.state.errors = null;
           _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
             name: "dashboard"
           });
         })["catch"](function (error) {
-          _this7.commit("setErrors", error.response.data.errors); // console.log(error);
+          _this8.commit("setErrors", error.response.data.errors); // console.log(error);
 
         });
       });
     },
-    removeUser: function removeUser(_ref11, payload) {
-      var dispatch = _ref11.dispatch;
+    removeUser: function removeUser(_ref12, payload) {
+      var dispatch = _ref12.dispatch;
       this.commit("setLoading", true);
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/deleteUser"), payload).then(function (response) {
         dispatch("getAllUsers");
@@ -34566,7 +34712,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.v-enter-active,\r\n.v-leave-active {\r\n  transition: opacity 0.2s ease;\n}\n.v-enter-from,\r\n.v-leave-to {\r\n  opacity: 0;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.v-enter-active,\r\n.v-leave-active {\r\n    transition: opacity 0.2s ease;\n}\n.v-enter-from,\r\n.v-leave-to {\r\n    opacity: 0;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -56719,6 +56865,34 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/components/ConfirmProjectDeleteModal.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/ConfirmProjectDeleteModal.vue ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ConfirmProjectDeleteModal_vue_vue_type_template_id_08e35d24__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ConfirmProjectDeleteModal.vue?vue&type=template&id=08e35d24 */ "./resources/js/components/ConfirmProjectDeleteModal.vue?vue&type=template&id=08e35d24");
+/* harmony import */ var _ConfirmProjectDeleteModal_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ConfirmProjectDeleteModal.vue?vue&type=script&lang=js */ "./resources/js/components/ConfirmProjectDeleteModal.vue?vue&type=script&lang=js");
+/* harmony import */ var D_xampp_htdocs_Laravel_bugtracker_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,D_xampp_htdocs_Laravel_bugtracker_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_ConfirmProjectDeleteModal_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_ConfirmProjectDeleteModal_vue_vue_type_template_id_08e35d24__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/ConfirmProjectDeleteModal.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/components/ConfirmUserDeleteModal.vue":
 /*!************************************************************!*\
   !*** ./resources/js/components/ConfirmUserDeleteModal.vue ***!
@@ -57423,6 +57597,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/ConfirmProjectDeleteModal.vue?vue&type=script&lang=js":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/ConfirmProjectDeleteModal.vue?vue&type=script&lang=js ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ConfirmProjectDeleteModal_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ConfirmProjectDeleteModal_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ConfirmProjectDeleteModal.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ConfirmProjectDeleteModal.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/components/ConfirmUserDeleteModal.vue?vue&type=script&lang=js":
 /*!************************************************************************************!*\
   !*** ./resources/js/components/ConfirmUserDeleteModal.vue?vue&type=script&lang=js ***!
@@ -57835,6 +58025,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AssignDeveloperToTicketModal_vue_vue_type_template_id_8562d3d4__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AssignDeveloperToTicketModal_vue_vue_type_template_id_8562d3d4__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AssignDeveloperToTicketModal.vue?vue&type=template&id=8562d3d4 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AssignDeveloperToTicketModal.vue?vue&type=template&id=8562d3d4");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/ConfirmProjectDeleteModal.vue?vue&type=template&id=08e35d24":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/ConfirmProjectDeleteModal.vue?vue&type=template&id=08e35d24 ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ConfirmProjectDeleteModal_vue_vue_type_template_id_08e35d24__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ConfirmProjectDeleteModal_vue_vue_type_template_id_08e35d24__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ConfirmProjectDeleteModal.vue?vue&type=template&id=08e35d24 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/ConfirmProjectDeleteModal.vue?vue&type=template&id=08e35d24");
 
 
 /***/ }),

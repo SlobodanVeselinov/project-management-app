@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/freeDevelopers/{project_id}', [UserController::class, 'freeDevelopers']);
     Route::get('/projects', [ProjectController::class, 'index']);
     Route::post('/createProject', [ProjectController::class, 'create']);
+    Route::post('/deleteProject/{id}', [ProjectController::class, 'delete']);
     Route::get('/projects/{id}', [ProjectController::class, 'getProject']);
     
     //Routes for tickets

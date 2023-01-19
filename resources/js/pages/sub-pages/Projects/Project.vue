@@ -7,15 +7,26 @@
                 :project="project"
             />
         </Transition>
+        <Transition>
+            <ConfirmProjectDeleteModal
+                v-if="showConfirmationModal"
+                @closeConfirmationModal="closeConfirmationModal"
+                :project="project"
+            />
+        </Transition>
         <div class="w-full md:w-2/4">
             <div v-if="project">
                 <h2 class="font-semibold text-gray-800 mb-5">
                     Project Name:
-                    <span
-                        class="text-2xl"
-                        >{{ project.name }}</span
-                    >
+                    <span class="text-2xl">{{ project.name }}</span>
                 </h2>
+                <div
+                    v-if="user.role_id == 1"
+                    class="mb-5 w-full border border-red-500 text-red-500 py-2 rounded text-center cursor-pointer"
+                    @click="openConfirmationModal"
+                >
+                    Delete Project
+                </div>
                 <div class="flex gap-10 mb-5">
                     <div>
                         <h2 class="font-semibold text-gray-800 mb-5">
@@ -37,10 +48,14 @@
                             v-for="developer in assignedDevelopers"
                             :key="developer.id"
                         >
-                            <span v-if="developer.role_id != 1">{{ developer.name }} - </span>
+                            <span v-if="developer.role_id != 1"
+                                >{{ developer.name }} -
+                            </span>
                             <span v-if="developer.role_id === 2"
                                 >Project Manager</span
-                            ><span v-else-if="developer.role_id ===3">Developer</span>
+                            ><span v-else-if="developer.role_id === 3"
+                                >Developer</span
+                            >
                         </li>
                     </ul>
                     <button
@@ -51,7 +66,9 @@
                         Assign Team Member
                     </button>
                 </div>
-                <div class="border border-gray-300 rounded p-3 bg-white mb-5 lg:mb-0">
+                <div
+                    class="border border-gray-300 rounded p-3 bg-white mb-5 lg:mb-0"
+                >
                     <div class="flex justify-between">
                         <h2 class="font-semibold text-gray-800 mb-5">
                             Project Description
@@ -74,11 +91,7 @@
             </div>
         </div>
         <div class="w-full md:w-2/4 lg:border-l lg:pl-5 lg:border-gray-300">
-            <Tickets 
-                :tickets="project.tickets"
-                 />
-
-            
+            <Tickets :tickets="project.tickets" />
         </div>
     </div>
 </template>
@@ -86,31 +99,42 @@
 <script>
 import Tickets from "../../../components/Tickets.vue";
 import NewTeamMemberModal from "../../../components/NewTeamMemberModal.vue";
-
+import ConfirmProjectDeleteModal from "../../../components/ConfirmProjectDeleteModal.vue";
 
 import { mapState, mapActions } from "vuex";
 export default {
     components: {
         Tickets,
         NewTeamMemberModal,
+        ConfirmProjectDeleteModal,
     },
     data() {
         return {
             project: {},
             showDescription: false,
             showModal: false,
+            showConfirmationModal: false,
         };
     },
     computed: {
         ...mapState(["user", "assignedDevelopers", "allProjects"]),
     },
     methods: {
-        ...mapActions(["getDevelopers"]),
-        openModal(){
+        ...mapActions(["getDevelopers", "deleteProject"]),
+        openModal() {
             this.showModal = true;
         },
-        closeModal(){
+        closeModal() {
             this.showModal = false;
+        },
+        openConfirmationModal() {
+            this.showConfirmationModal = true;
+        },
+        closeConfirmationModal() {
+            this.showConfirmationModal = false;
+        },
+        deleteP() {
+            this.deleteProject(this.project.id);
         },
     },
     mounted() {
@@ -125,12 +149,11 @@ export default {
 <style>
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease;
 }
 
 .v-enter-from,
 .v-leave-to {
-  opacity: 0;
+    opacity: 0;
 }
 </style>
-

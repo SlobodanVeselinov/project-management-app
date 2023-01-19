@@ -196,6 +196,21 @@ const store = createStore({
                 });
         },
 
+        deleteProject({ dispatch }, projectId) {
+            this.commit("setLoading", true);
+            axios
+                .post(`${config.apiUrl}/deleteProject/` + projectId)
+                .then(() => {
+                    dispatch("getProjects");
+                    this.commit("setLoading", false);
+                    router.push({ name: "projects" });
+                    // console.log(response.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
         assignDeveloper({ dispatch }, payload) {
             this.commit("setLoading", true);
             axios

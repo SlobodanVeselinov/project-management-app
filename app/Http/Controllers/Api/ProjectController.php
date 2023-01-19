@@ -40,6 +40,11 @@ class ProjectController extends Controller
         return $project;
     }
 
-  
+    
+    public function delete($id){
+        $project = Project::find($id);
+        $project->delete();
+        return response('Deleted', 200);
+    }
 }
 
