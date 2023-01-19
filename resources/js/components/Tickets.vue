@@ -16,7 +16,8 @@
             </button>
         </div>
         <div v-for="ticket in userTickets" :key="ticket.id">
-            <Ticket :ticket="ticket" />
+            <Ticket 
+                :ticket="ticket" />
         </div>
         <div v-if="!userTickets.length">
             <p class="text-sm font-semibold">No active tickets for this project.</p>

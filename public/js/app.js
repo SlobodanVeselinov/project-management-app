@@ -24221,7 +24221,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.project = this.allProjects.find(function (project) {
       return project.id == _this.$route.params.id;
     });
-    this.getDevelopers(this.project.id); // console.log(this.project.tickets)
+    this.getDevelopers(this.project.id);
   }
 });
 
@@ -24274,7 +24274,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.showModal = false;
     }
   }),
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["ticket", "loading", "user"])), {}, {
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["ticket", "loading", "user", "assignedDevelopers"])), {}, {
     developers: function developers() {
       return this.ticket.users.find(function (d) {
         return d.role_id == 3;
@@ -24283,7 +24283,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   mounted: function mounted() {
     this.getTicketWithDetails(this.$route.params.t_id);
-    this.projectManager = this.ticket.users.find(function (u) {
+    this.projectManager = this.assignedDevelopers.find(function (u) {
       return u.role_id == 2;
     });
   }
@@ -26558,25 +26558,29 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 var _hoisted_9 = {
   key: 0,
-  "class": "font-semibold mb-5"
+  "class": "font-semibold mb-8"
+};
+var _hoisted_10 = {
+  key: 1,
+  "class": "text-sm text-red-600 mb-8"
 };
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "font-semibold border-b mb-3"
 }, "Developers:", -1
 /* HOISTED */
 );
 
-var _hoisted_11 = {
-  key: 1,
-  "class": "text-sm"
-};
 var _hoisted_12 = {
+  key: 2,
+  "class": "text-sm text-red-600"
+};
+var _hoisted_13 = {
   key: 0
 };
-var _hoisted_13 = ["onClick"];
+var _hoisted_14 = ["onClick"];
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"p-5 w-full bg-white mb-5\"><h3 class=\"font-semibold border-b mb-5\">Notes:</h3><div class=\"my-5\"><strong>David Veselinov</strong> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minima veritatis itaque deserunt, molestiae fugit eum molestias est doloribus, reprehenderit earum, rem culpa eius ipsam voluptatum beatae quis cum perspiciatis. </div><div class=\"my-5\"><strong>Jovan Veselinov</strong> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minima veritatis itaque deserunt, molestiae fugit eum molestias est doloribus, reprehenderit earum, rem culpa eius ipsam voluptatum beatae quis cum perspiciatis. </div><div class=\"my-5\"><strong>David Veselinov</strong> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minima veritatis itaque deserunt, molestiae fugit eum molestias est doloribus, reprehenderit earum, rem culpa eius ipsam voluptatum beatae quis cum perspiciatis. </div></div>", 1);
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"p-5 w-full bg-white mb-5\"><h3 class=\"font-semibold border-b mb-5\">Notes:</h3><div class=\"my-5\"><strong>David Veselinov</strong> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minima veritatis itaque deserunt, molestiae fugit eum molestias est doloribus, reprehenderit earum, rem culpa eius ipsam voluptatum beatae quis cum perspiciatis. </div><div class=\"my-5\"><strong>Jovan Veselinov</strong> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minima veritatis itaque deserunt, molestiae fugit eum molestias est doloribus, reprehenderit earum, rem culpa eius ipsam voluptatum beatae quis cum perspiciatis. </div><div class=\"my-5\"><strong>David Veselinov</strong> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minima veritatis itaque deserunt, molestiae fugit eum molestias est doloribus, reprehenderit earum, rem culpa eius ipsam voluptatum beatae quis cum perspiciatis. </div></div>", 1);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_AssignDeveloperToTicketModal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("AssignDeveloperToTicketModal");
@@ -26598,10 +26602,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, $data.projectManager ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_9, "Project manager: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.projectManager.name), 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_10, !$options.developers ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, " No developers are assigned to this ticket yet! ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.ticket.users, function (developer) {
+  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_10, " No Project Manager is assigned to this project. ")), _hoisted_11, !$options.developers ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, " No developers are assigned to this ticket! ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.ticket.users, function (developer) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", {
       key: developer.id
-    }, [developer.role_id !== 2 && developer.role_id !== 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(developer.name) + " ", 1
+    }, [developer.role_id !== 2 && developer.role_id !== 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(developer.name) + " ", 1
     /* TEXT */
     ), _ctx.user.role_id !== 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
       key: 0,
@@ -26611,10 +26615,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "text-sm text-red-600 cursor-pointer"
     }, " - Remove ", 8
     /* PROPS */
-    , _hoisted_13)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+    , _hoisted_14)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])]), _hoisted_14])], 64
+  ))])]), _hoisted_15])], 64
   /* STABLE_FRAGMENT */
   );
 }

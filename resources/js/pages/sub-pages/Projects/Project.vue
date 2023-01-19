@@ -118,7 +118,6 @@ export default {
             (project) => project.id == this.$route.params.id
         );
         this.getDevelopers(this.project.id);
-        // console.log(this.project.tickets)
     },
 };
 </script>

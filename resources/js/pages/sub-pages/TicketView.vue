@@ -26,13 +26,18 @@
 
 				<p 
 					v-if="projectManager"
-					class="font-semibold mb-5">Project manager: {{ projectManager.name }}
+					class="font-semibold mb-8">Project manager: {{ projectManager.name }}
+				</p>
+				<p 
+					v-else
+					class="text-sm text-red-600 mb-8">
+					No Project Manager is assigned to this project.
 				</p>
 				<p class="font-semibold border-b mb-3">Developers:</p>
 				<div 
 					v-if="!developers"
-					class="text-sm">
-					No developers are assigned to this ticket yet!
+					class="text-sm text-red-600">
+					No developers are assigned to this ticket!
 				</div>
 				<ul v-for="developer in ticket.users" :key="developer.id">
 					<li v-if="developer.role_id !== 2 && developer.role_id !== 1">
@@ -98,7 +103,7 @@ export default {
     },
 
     computed: {
-        ...mapState(["ticket", "loading", "user"]),
+        ...mapState(["ticket", "loading", "user", "assignedDevelopers"]),
 		developers(){
 			return this.ticket.users.find(d => d.role_id == 3)
 		},
@@ -106,7 +111,7 @@ export default {
 
     mounted() {
         this.getTicketWithDetails(this.$route.params.t_id);
-		this.projectManager = this.ticket.users.find(u => u.role_id == 2)
+		this.projectManager = this.assignedDevelopers.find(u => u.role_id == 2)
     },
 };
 </script>
