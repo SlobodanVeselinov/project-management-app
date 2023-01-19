@@ -23956,11 +23956,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     closeMenu: function closeMenu() {
       this.activeLinks = false;
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)(["logout"])),
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)(["logout", "getLoggedUser"])),
   components: {
     DashboardLinks: _DashboardLinks_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["user"]))
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["user"])),
+  mounted: function mounted() {
+    this.getLoggedUser();
+  }
 });
 
 /***/ }),
@@ -24136,7 +24139,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       search: ''
     };
   },
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)(["getAllUsers"])), {}, {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)(["getAllUsers", "getProjects", "getLoggedUser"])), {}, {
     openModal: function openModal() {
       this.showModal = true;
     },
@@ -24159,7 +24162,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return project.name.toString().toLowerCase().includes(_this2.search.toLowerCase());
       });
     }
-  })
+  }),
+  created: function created() {
+    this.getLoggedUser();
+    this.getProjects();
+  }
 });
 
 /***/ }),
@@ -25203,6 +25210,14 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 var _hoisted_3 = {
   key: 1
 };
+
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "text-sm font-semibold"
+}, "No active tickets for this project.", -1
+/* HOISTED */
+);
+
+var _hoisted_5 = [_hoisted_4];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_NewTicketModal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("NewTicketModal");
 
@@ -25219,7 +25234,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.openModal && $options.openModal.apply($options, arguments);
     }),
     "class": "py-2 px-3 bg-blue-600 hover:bg-blue-700 transition duration-150 ease-in-out text-white text-sm rounded"
-  }, " Add Ticket ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $props.tickets ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.userTickets, function (ticket) {
+  }, " Add Ticket ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.userTickets, function (ticket) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: ticket.id
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Ticket, {
@@ -25229,7 +25244,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["ticket"])]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+  )), !_ctx.userTickets.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, _hoisted_5)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
 }
 
 /***/ }),
@@ -26583,19 +26598,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, $data.projectManager ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_9, "Project manager: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.projectManager.name), 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_10, !$options.developers ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, " No developers are assigned to this ticket yet! ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.ticket.users, function (user) {
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_10, !$options.developers ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, " No developers are assigned to this ticket yet! ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.ticket.users, function (developer) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", {
-      key: user.id
-    }, [user.role_id !== 2 && user.role_id !== 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.name) + " - ", 1
+      key: developer.id
+    }, [developer.role_id !== 2 && developer.role_id !== 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(developer.name) + " ", 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    ), _ctx.user.role_id !== 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
+      key: 0,
       onClick: function onClick($event) {
-        return $options.removeDeveloper(user.id);
+        return $options.removeDeveloper(developer.id);
       },
       "class": "text-sm text-red-600 cursor-pointer"
-    }, " Remove ", 8
+    }, " - Remove ", 8
     /* PROPS */
-    , _hoisted_13)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+    , _hoisted_13)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
   }), 128
   /* KEYED_FRAGMENT */
   ))])]), _hoisted_14])], 64

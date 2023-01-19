@@ -34,13 +34,14 @@
 					class="text-sm">
 					No developers are assigned to this ticket yet!
 				</div>
-				<ul v-for="user in ticket.users" :key="user.id">
-					<li v-if="user.role_id !== 2 && user.role_id !== 1">
-						{{ user.name }} - 
+				<ul v-for="developer in ticket.users" :key="developer.id">
+					<li v-if="developer.role_id !== 2 && developer.role_id !== 1">
+						{{ developer.name }} 
 						<span 
-							@click="removeDeveloper(user.id)"
+							v-if="user.role_id !== 3"
+							@click="removeDeveloper(developer.id)"
 							class="text-sm text-red-600 cursor-pointer">
-							Remove
+							- Remove
 						</span>
 					</li>
 				</ul>

@@ -89,7 +89,7 @@ export default {
         }
     },
         methods: {
-        ...mapActions(["getAllUsers"]),
+        ...mapActions(["getAllUsers", "getProjects", "getLoggedUser"]),
 
         openModal(){
             this.showModal = true;
@@ -109,6 +109,11 @@ export default {
             return this.user.projects.filter((project) => project.name.toString().toLowerCase().includes(this.search.toLowerCase()))
         }
     },
+
+    created(){
+        this.getLoggedUser()
+        this.getProjects()
+    }
 };
 </script>
 

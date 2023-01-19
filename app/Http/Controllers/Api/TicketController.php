@@ -11,12 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
 {
-    //Get all tickets for a specific project
-    // public function getTickets($project_id){
-    //     $project = Project::find($project_id);
-    //     return $project->tickets;
-    // }
-
 
     public function getTickets($project_id, $user_id){
         $project = Project::find($project_id);
@@ -58,6 +52,12 @@ class TicketController extends Controller
         $user_id = Auth::user()->id;
 
         $ticket->users()->attach($user_id);
+        
+        //if user who is creating the ticket is not the CEO, attach CEO to this ticket
+
+        if(Auth::user()->role_id != 1){
+            $ticket->users()->attach(1);
+        }
 
         return $ticket;
     }

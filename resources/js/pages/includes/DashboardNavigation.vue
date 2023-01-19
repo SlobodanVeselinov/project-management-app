@@ -152,7 +152,7 @@ export default {
         closeMenu() {
             this.activeLinks = false;
         },
-        ...mapActions(["logout"]),
+        ...mapActions(["logout", "getLoggedUser"]),
     },
     components: {
         DashboardLinks,
@@ -160,6 +160,9 @@ export default {
     computed: {
         ...mapState(["user"]),
     },
+    mounted(){
+        this.getLoggedUser()
+    }
 };
 </script>
 
