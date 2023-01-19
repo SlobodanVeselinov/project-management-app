@@ -1,17 +1,11 @@
 <template>
-    <div class="p-5">
+    <div class="p-5 min-h-[calc(100%_-_10rem)]">
         <Transition>
         <NewProjectModal
              v-if="showModal"
              @closeModal="closeModal"
         />
         </Transition>
-        <!-- <button v-if="user.role_id == 1"
-            class="py-2 px-3 mb-10 bg-blue-600 hover:bg-blue-700 transition duration-150 ease-in-out text-white text-sm rounded"
-            @click="openModal"
-        >
-            Create new project
-        </button> -->
 
         <div class="lg:flex items-center justify-between pb-4 bg-white p-3 mb-5">
                     <input

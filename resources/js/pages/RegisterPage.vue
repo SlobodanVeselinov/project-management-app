@@ -1,5 +1,5 @@
 <template>
-    <section class="max-w-xl p-6 mx-auto bg-white rounded-md shadow-md">
+    <section class="max-w-xl p-6 mx-auto bg-white rounded-md shadow-md mt-20">
         <h2 class="text-lg mb-5 font-semibold text-gray-700 capitalize">
             Register
         </h2>
