@@ -1,5 +1,8 @@
 <template>
-    <div class="flex flex-col bg-white border-r border-gray-300 min-h-screen">
+    <div
+        class="flex-col bg-white border-r border-gray-300 min-h-screen md:flex"
+        :class="[menu ? 'hidden' : 'flex']"
+        >
         <div class="flex flex-col items-center mt-6">
             <img
                 class="object-cover w-24 h-24 mx-2 rounded-full"
@@ -25,7 +28,7 @@
             <router-link
                 to="/projects"
                 active-class="bg-gray-200"
-                @click="closeMenu"
+                @click="closeMenu(); toggleMenu()"
                 class="flex text-sm items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform hover:bg-gray-200 hover:text-gray-700"
             >
                 <svg
@@ -50,7 +53,7 @@
                 class="flex text-sm items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform hover:bg-gray-200 hover:text-gray-700"
                 to="/developers"
                 active-class="bg-gray-200"
-                @click="closeMenu"
+                @click="closeMenu(); toggleMenu()"
             >
                 <svg
                     class="w-5 h-5 mr-5"
@@ -80,7 +83,7 @@
                 class="flex text-sm items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform hover:bg-gray-200 hover:text-gray-700"
                 to="/to-do"
                 active-class="bg-gray-200"
-                @click="closeMenu"
+                @click="closeMenu(); toggleMenu()"
             >
                 <svg
                     class="w-5 h-5 mr-5"
@@ -110,7 +113,7 @@
                 class="flex text-sm items-center px-4 py-2 text-gray-600 transition-colors duration-300 transform hover:bg-gray-200 hover:text-gray-700"
                 to="/notes"
                 active-class="bg-gray-200"
-                @click="closeMenu"
+                @click="closeMenu(); toggleMenu()"
             >
                 <svg
                     class="w-5 h-5 mr-5"
@@ -152,17 +155,17 @@ export default {
         closeMenu() {
             this.activeLinks = false;
         },
-        ...mapActions(["logout", "getLoggedUser"]),
+        ...mapActions(["logout", "getLoggedUser", "toggleMenu"]),
     },
     components: {
         DashboardLinks,
     },
     computed: {
-        ...mapState(["user"]),
+        ...mapState(["user", "menu"]),
     },
-    mounted(){
-        this.getLoggedUser()
-    }
+    mounted() {
+        this.getLoggedUser();
+    },
 };
 </script>
 

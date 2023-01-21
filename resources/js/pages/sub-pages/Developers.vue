@@ -1,5 +1,5 @@
 <template>
-    <div class="p-5">
+    <div class="lg:p-5">
         <Transition>
             <DeveloperDetailsModal
                 v-if="showModal"
@@ -27,24 +27,25 @@
             >Loading...
         </div>
 
-        <div v-else class="shadow-md sm:rounded-lg">
-            <div class="flex items-center justify-between pb-4 bg-white p-3">
+        <div v-else class="shadow-md sm:rounded-lg w-full">
+            <div class="lg:flex items-center justify-between pb-4 bg-white lg:p-3 p-5">
                     <input
                         type="text"
                         v-model="search"
                         id="table-search-users"
-                        class="block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        class="block p-2 pl-10 mb-5 lg:mb-0 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Search for developers"
                     />
 
                     <button v-if="user.role_id == 1"
-                        class="py-2 px-3 bg-blue-600 hover:bg-blue-700 transition duration-150 ease-in-out text-white text-sm rounded"
+                        class="py-2 px-3 bg-blue-600 hover:bg-blue-700 transition duration-150 ease-in-out text-white text-sm rounded w-full lg:max-w-fit"
                         @click="openDeveloperModal"
                     >
                         Add Developer
                     </button>
             </div>
-            <table class="w-full text-sm text-left text-gray-500">
+            <div class="overflow-x-scroll">
+            <table class="w-full text-sm text-left text-gray-500 ">
                 <thead
                     class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700"
                 >
@@ -105,6 +106,7 @@
                     </tr>
                 </tbody>
             </table>
+            </div>
         </div>
     </div>
 </template>

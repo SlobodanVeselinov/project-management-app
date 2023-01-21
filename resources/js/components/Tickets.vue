@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="pb-12">
         <NewTicketModal 
             v-if="showModal" 
             @closeModal="closeModal" 

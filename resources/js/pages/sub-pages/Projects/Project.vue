@@ -1,5 +1,5 @@
 <template>
-    <div class="md:flex gap-5 p-5">
+    <div class="md:flex gap-5 p-5 pb-12">
         <Transition>
             <NewTeamMemberModal
                 v-if="showModal"

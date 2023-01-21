@@ -2,10 +2,15 @@
     <div class="w-full bg-gray-900 text-gray-100 py-5 sticky top-0">
         <div class="max-w-screen-xl px-5 mx-auto flex justify-between items-center">
             <div class="text-lg font-bold text-gray-100 flex items-center">
+                <span 
+                    class="md:hidden pr-5 cursor-pointer"
+                    @click="toggleM">
+                    <i class="fa-solid fa-bars"></i>
+                </span>
                 <span class="pr-2 lg:ml-0 ml-3">
                     <i class="fa-solid fa-bug text-3xl"></i>
                 </span>
-                <span>Project Management</span>
+                <span class="hidden lg:flex">Project Management</span>
                 <div class="text-sm font-normal ml-12">
                     <router-link class="mr-3" to="/">Home</router-link>
                     <router-link v-if="isLoggedIn" class="mr-3" to="/dashboard"
@@ -44,7 +49,11 @@ export default {
         ...mapState(["isLoggedIn"]),
     },
     methods: {
-        ...mapActions(["logout"]),
+        ...mapActions(["logout", "toggleMenu"]),
+
+        toggleM(){
+            this.toggleMenu()
+        }
     },
 };
 </script>

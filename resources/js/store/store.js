@@ -19,6 +19,7 @@ const store = createStore({
             errors: null,
             userTickets: null,
             ticket: null,
+            menu: true,
         };
     },
 
@@ -71,6 +72,9 @@ const store = createStore({
         setTicket(state, payload) {
             state.ticket = payload;
         },
+        toggleMenu(state){
+            state.menu = !state.menu;
+        },
     },
 
     actions: {
@@ -83,6 +87,10 @@ const store = createStore({
                 .catch((error) => {
                     console.log(error);
                 });
+        },
+
+        toggleMenu(context) {
+            context.commit("toggleMenu");
         },
 
         getAllDevelopers(context) {
