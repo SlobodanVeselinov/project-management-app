@@ -84,9 +84,10 @@
                         <td class="py-4 px-6">
                             <div class="flex items-center">
                                 <div
-                                    class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"
+                                    class="h-2.5 w-2.5 rounded-full mr-2"
+                                    :class="[ developer.isActive ? 'bg-green-400' : 'bg-red-600' ]"
                                 ></div>
-                                Online
+                                <span>{{ developer.isActive ? 'Online' : 'Offline' }}</span>
                             </div>
                         </td>
                         <td class="py-4 px-6 flex flex-col">
@@ -137,7 +138,7 @@ export default {
         ...mapState(["allUsers", "user", "loading"]),
         filtered(){
             return this.allUsers.filter((user) => user.name.toString().toLowerCase().includes(this.search.toLowerCase()))
-        }
+        },
     },
     methods: {
         ...mapActions(["getAllUsers"]),

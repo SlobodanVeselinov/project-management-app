@@ -33,7 +33,7 @@
                 class="flex items-stretch w-full"
             >
                 <div
-                    class="w-full p-6 rounded shadow bg-white hover:bg-gray-100 max-w-sm lg:mb-0 mb-3"
+                    class="w-full p-6 rounded shadow bg-white hover:bg-gray-100 max-w-sm lg:mb-0 mb-5"
                 >
                     <h5 class="text-gray-900 leading-tight font-medium mb-5">
                         {{ project.name.toUpperCase() }}

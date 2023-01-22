@@ -16,6 +16,9 @@ class LoginController extends Controller
         ]);
 
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password], true)){
+            $user = Auth::user();
+            $user->isActive = true;
+            $user->update();
             return response()->json(Auth::user(), 200);
         }
         else {
@@ -24,6 +27,9 @@ class LoginController extends Controller
     }
 
     public function logout(){
+        $user = Auth::user();
+        $user->isActive = false;
+        $user->update();
         Auth::logout();
     }
 }
