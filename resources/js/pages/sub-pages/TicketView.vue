@@ -54,18 +54,37 @@
 		</div>
 
 		<div class="p-5 w-full bg-white mb-5">
-			<h3 class="font-semibold border-b mb-5">Notes:</h3>
-			<div class="my-5">
-				<strong>David Veselinov</strong> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minima veritatis itaque deserunt, molestiae fugit eum molestias est doloribus, reprehenderit earum, rem culpa eius ipsam voluptatum beatae quis cum perspiciatis.
+			<h3 class="font-semibold border-b mb-5 text-gray-500 text-sm">Conversation:</h3>
+			<div
+				v-if="notes.length" 
+				class="my-5 max-h-72 overflow-scroll">
+				<div 
+					v-for="note in notes" 
+					:key="note.id"
+				>
+					<div class="border-b py-3">
+						<span class="text-sm text-gray-500">{{ note.created_at }}</span>
+						<p><span class="text-blue-700 text-sm">{{ note.user.name }}:</span> {{ note.note }}</p>
+					</div>
+				</div>
+				
+						
 			</div>
-
-			<div class="my-5">
-				<strong>Jovan Veselinov</strong> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minima veritatis itaque deserunt, molestiae fugit eum molestias est doloribus, reprehenderit earum, rem culpa eius ipsam voluptatum beatae quis cum perspiciatis.
+			<div v-else>
+				<p class="mb-5 text-sm text-red-600">No conversation for this ticket yet!</p>
 			</div>
-
-			<div class="my-5">
-				<strong>David Veselinov</strong> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minima veritatis itaque deserunt, molestiae fugit eum molestias est doloribus, reprehenderit earum, rem culpa eius ipsam voluptatum beatae quis cum perspiciatis.
-			</div>
+			<input 
+					type="text"
+					v-model="note.text"
+					class="w-full mb-5 border-gray-400 rounded"
+				>
+				<button 
+					class="px-3 py-2 bg-blue-800 text-sm text-gray-100 rounded"
+					@click="saveN"
+					>
+					
+						Send
+				</button>	
 		</div>
 
 	</div>
@@ -86,10 +105,15 @@ export default {
                 developer_id: "",
                 ticket_id: this.$route.params.t_id,
             },
+
+			note: {
+				text: "",
+				ticket_id: this.$route.params.t_id
+			}
 		}
 	},
     methods: {
-        ...mapActions(["getTicketWithDetails", "removeDeveloperFromTicket"]),
+        ...mapActions(["getTicketWithDetails", "removeDeveloperFromTicket", "createNote"]),
 		removeDeveloper(id){
 			this.form.developer_id = id
 			this.removeDeveloperFromTicket(this.form)
@@ -100,10 +124,15 @@ export default {
         closeModal() {
             this.showModal = false;
         },
+
+		saveN(){
+			this.createNote(this.note)
+			this.note.text = "";
+		}
     },
 
     computed: {
-        ...mapState(["ticket", "loading", "user", "assignedDevelopers"]),
+        ...mapState(["ticket", "notes", "loading", "user", "assignedDevelopers"]),
 		developers(){
 			return this.ticket.users.find(d => d.role_id == 3)
 		},

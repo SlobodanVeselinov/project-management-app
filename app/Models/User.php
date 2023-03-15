@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Note;
 use App\Models\Role;
 use App\Models\Ticket;
 use App\Models\Project;
@@ -55,5 +56,9 @@ class User extends Authenticatable
 
     public function tickets(){
         return $this->belongsToMany(Ticket::class);
+    }
+
+    public function notes(){
+        return $this->hasMany(Note::class);
     }
 }

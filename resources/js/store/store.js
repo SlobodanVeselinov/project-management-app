@@ -20,6 +20,7 @@ const store = createStore({
             userTickets: null,
             ticket: null,
             menu: true,
+            notes: null,
         };
     },
 
@@ -72,7 +73,10 @@ const store = createStore({
         setTicket(state, payload) {
             state.ticket = payload;
         },
-        toggleMenu(state){
+        setNotes(state, payload){
+            state.notes = payload;
+        },
+        toggleMenu(state) {
             state.menu = !state.menu;
         },
     },
@@ -143,7 +147,6 @@ const store = createStore({
                 .get(`${config.apiUrl}/getRoles`)
                 .then((response) => {
                     context.commit("setRoles", response.data);
-                    // console.log(response.data);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -166,12 +169,24 @@ const store = createStore({
                 });
         },
 
-        getTicketWithDetails( context, ticket_id) {
+        getTicketWithDetails({dispatch}, ticket_id) {
             axios
                 .get(`${config.apiUrl}/projects/tickets/` + ticket_id)
                 .then((response) => {
-                    context.commit("setTicket", response.data);
+                    dispatch("getNotes", ticket_id);
+                    this.commit("setTicket", response.data);
                     // console.log(response.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
+        getNotes(context, ticket_id) {
+            axios
+                .get(`${config.apiUrl}/ticket/` + ticket_id + `/notes`)
+                .then((response) => {
+                    context.commit("setNotes", response.data);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -183,7 +198,6 @@ const store = createStore({
                 .get(`${config.apiUrl}/projects`)
                 .then((response) => {
                     context.commit("setProjects", response.data);
-                    // console.log(response.data);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -197,7 +211,6 @@ const store = createStore({
                 .then(() => {
                     dispatch("getProjects");
                     this.commit("setLoading", false);
-                    // console.log(response.data);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -212,7 +225,6 @@ const store = createStore({
                     dispatch("getProjects");
                     this.commit("setLoading", false);
                     router.push({ name: "projects" });
-                    // console.log(response.data);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -226,7 +238,6 @@ const store = createStore({
                 .then((response) => {
                     dispatch("getTicketWithDetails", payload.ticket_id);
                     this.commit("setLoading", false);
-                    // console.log(response.data);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -238,7 +249,6 @@ const store = createStore({
                 .post(`${config.apiUrl}/remove-developer-to-ticket`, payload)
                 .then(() => {
                     dispatch("getTicketWithDetails", payload.ticket_id);
-                    // console.log(response.data);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -260,6 +270,17 @@ const store = createStore({
                 });
         },
 
+        createNote({ dispatch }, payload) {
+            axios
+                .post(`${config.apiUrl}/saveNote`, payload)
+                .then((response) => {
+                    dispatch("getTicketWithDetails", response.data.ticket_id);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
         createUser({ dispatch }, payload) {
             this.commit("setLoading", true);
             axios
@@ -267,7 +288,6 @@ const store = createStore({
                 .then(() => {
                     dispatch("getAllUsers");
                     this.commit("setLoading", false);
-                    // console.log(response.data);
                 })
                 .catch((error) => {
                     console.log(error);

@@ -30,7 +30,7 @@ class TicketController extends Controller
 
     //Show Ticket
     public function getTicket($ticket_id){
-        $ticket = Ticket::with('users')->where('id', $ticket_id)->first();
+        $ticket = Ticket::with('users')->with('notes')->where('id', $ticket_id)->first();
         return $ticket;
     }
 

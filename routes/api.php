@@ -4,6 +4,7 @@ use App\Models\User;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\NoteController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\RolesController;
@@ -35,6 +36,10 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/assign-developer-to-ticket', [TicketController::class, 'assignDeveloper']);
     Route::post('/remove-developer-to-ticket', [TicketController::class, 'removeDeveloper']);
     ////////////////
+
+    //Routes for notes
+    Route::post('/saveNote', [NoteController::class, 'createNote']);
+    Route::get('/ticket/{ticket_id}/notes', [NoteController::class, 'getNotes']);
 
 
 

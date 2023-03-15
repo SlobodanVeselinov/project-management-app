@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Note;
 use App\Models\User;
 use App\Models\Project;
 use Illuminate\Database\Eloquent\Model;
@@ -19,5 +20,9 @@ class Ticket extends Model
 
     public function users(){
         return $this->belongsToMany(User::class);
+    }
+
+    public function notes(){
+        return $this->hasMany(Note::class);
     }
 }

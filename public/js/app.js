@@ -24328,10 +24328,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       form: {
         developer_id: "",
         ticket_id: this.$route.params.t_id
+      },
+      note: {
+        text: "",
+        ticket_id: this.$route.params.t_id
       }
     };
   },
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)(["getTicketWithDetails", "removeDeveloperFromTicket"])), {}, {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)(["getTicketWithDetails", "removeDeveloperFromTicket", "createNote"])), {}, {
     removeDeveloper: function removeDeveloper(id) {
       this.form.developer_id = id;
       this.removeDeveloperFromTicket(this.form);
@@ -24341,9 +24345,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     closeModal: function closeModal() {
       this.showModal = false;
+    },
+    saveN: function saveN() {
+      this.createNote(this.note);
+      this.note.text = "";
     }
   }),
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["ticket", "loading", "user", "assignedDevelopers"])), {}, {
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["ticket", "notes", "loading", "user", "assignedDevelopers"])), {}, {
     developers: function developers() {
       return this.ticket.users.find(function (d) {
         return d.role_id == 3;
@@ -26849,9 +26857,40 @@ var _hoisted_13 = {
   key: 0
 };
 var _hoisted_14 = ["onClick"];
+var _hoisted_15 = {
+  "class": "p-5 w-full bg-white mb-5"
+};
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"p-5 w-full bg-white mb-5\"><h3 class=\"font-semibold border-b mb-5\">Notes:</h3><div class=\"my-5\"><strong>David Veselinov</strong> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minima veritatis itaque deserunt, molestiae fugit eum molestias est doloribus, reprehenderit earum, rem culpa eius ipsam voluptatum beatae quis cum perspiciatis. </div><div class=\"my-5\"><strong>Jovan Veselinov</strong> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minima veritatis itaque deserunt, molestiae fugit eum molestias est doloribus, reprehenderit earum, rem culpa eius ipsam voluptatum beatae quis cum perspiciatis. </div><div class=\"my-5\"><strong>David Veselinov</strong> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minima veritatis itaque deserunt, molestiae fugit eum molestias est doloribus, reprehenderit earum, rem culpa eius ipsam voluptatum beatae quis cum perspiciatis. </div></div>", 1);
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "font-semibold border-b mb-5 text-gray-500 text-sm"
+}, "Conversation:", -1
+/* HOISTED */
+);
 
+var _hoisted_17 = {
+  key: 0,
+  "class": "my-5 max-h-72 overflow-scroll"
+};
+var _hoisted_18 = {
+  "class": "border-b py-3"
+};
+var _hoisted_19 = {
+  "class": "text-sm text-gray-500"
+};
+var _hoisted_20 = {
+  "class": "text-blue-700 text-sm"
+};
+var _hoisted_21 = {
+  key: 1
+};
+
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "mb-5 text-sm text-red-600"
+}, "No conversation for this ticket yet!", -1
+/* HOISTED */
+);
+
+var _hoisted_23 = [_hoisted_22];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_AssignDeveloperToTicketModal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("AssignDeveloperToTicketModal");
 
@@ -26888,7 +26927,32 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , _hoisted_14)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])]), _hoisted_15])], 64
+  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, _ctx.notes.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.notes, function (note) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: note.id
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(note.created_at), 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(note.user.name) + ":", 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(note.note), 1
+    /* TEXT */
+    )])])]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_21, _hoisted_23)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "text",
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $data.note.text = $event;
+    }),
+    "class": "w-full mb-5 border-gray-400 rounded"
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.note.text]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "px-3 py-2 bg-blue-800 text-sm text-gray-100 rounded",
+    onClick: _cache[2] || (_cache[2] = function () {
+      return $options.saveN && $options.saveN.apply($options, arguments);
+    })
+  }, " Send ")])])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -27211,7 +27275,8 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       errors: null,
       userTickets: null,
       ticket: null,
-      menu: true
+      menu: true,
+      notes: null
     };
   },
   mutations: {
@@ -27252,6 +27317,9 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
     },
     setTicket: function setTicket(state, payload) {
       state.ticket = payload;
+    },
+    setNotes: function setNotes(state, payload) {
+      state.notes = payload;
     },
     toggleMenu: function toggleMenu(state) {
       state.menu = !state.menu;
@@ -27302,7 +27370,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
     },
     getRoles: function getRoles(context) {
       axios.get("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/getRoles")).then(function (response) {
-        context.commit("setRoles", response.data); // console.log(response.data);
+        context.commit("setRoles", response.data);
       })["catch"](function (error) {
         console.log(error);
       });
@@ -27314,104 +27382,122 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         console.log(error);
       });
     },
-    getTicketWithDetails: function getTicketWithDetails(context, ticket_id) {
+    getTicketWithDetails: function getTicketWithDetails(_ref, ticket_id) {
+      var _this2 = this;
+
+      var dispatch = _ref.dispatch;
       axios.get("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/projects/tickets/") + ticket_id).then(function (response) {
-        context.commit("setTicket", response.data); // console.log(response.data);
+        dispatch("getNotes", ticket_id);
+
+        _this2.commit("setTicket", response.data); // console.log(response.data);
+
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getNotes: function getNotes(context, ticket_id) {
+      axios.get("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/ticket/") + ticket_id + "/notes").then(function (response) {
+        context.commit("setNotes", response.data);
       })["catch"](function (error) {
         console.log(error);
       });
     },
     getProjects: function getProjects(context) {
       axios.get("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/projects")).then(function (response) {
-        context.commit("setProjects", response.data); // console.log(response.data);
+        context.commit("setProjects", response.data);
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    createProject: function createProject(_ref, payload) {
-      var _this2 = this;
-
-      var dispatch = _ref.dispatch;
-      this.commit("setLoading", true);
-      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/createProject"), payload).then(function () {
-        dispatch("getProjects");
-
-        _this2.commit("setLoading", false); // console.log(response.data);
-
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    deleteProject: function deleteProject(_ref2, projectId) {
+    createProject: function createProject(_ref2, payload) {
       var _this3 = this;
 
       var dispatch = _ref2.dispatch;
       this.commit("setLoading", true);
-      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/deleteProject/") + projectId).then(function () {
+      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/createProject"), payload).then(function () {
         dispatch("getProjects");
 
         _this3.commit("setLoading", false);
-
-        _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
-          name: "projects"
-        }); // console.log(response.data);
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    assignDeveloper: function assignDeveloper(_ref3, payload) {
+    deleteProject: function deleteProject(_ref3, projectId) {
       var _this4 = this;
 
       var dispatch = _ref3.dispatch;
       this.commit("setLoading", true);
-      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/assign-developer-to-ticket"), payload).then(function (response) {
-        dispatch("getTicketWithDetails", payload.ticket_id);
+      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/deleteProject/") + projectId).then(function () {
+        dispatch("getProjects");
 
-        _this4.commit("setLoading", false); // console.log(response.data);
+        _this4.commit("setLoading", false);
 
+        _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
+          name: "projects"
+        });
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    removeDeveloperFromTicket: function removeDeveloperFromTicket(_ref4, payload) {
-      var dispatch = _ref4.dispatch;
-      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/remove-developer-to-ticket"), payload).then(function () {
-        dispatch("getTicketWithDetails", payload.ticket_id); // console.log(response.data);
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    createTicket: function createTicket(_ref5, payload) {
+    assignDeveloper: function assignDeveloper(_ref4, payload) {
       var _this5 = this;
 
-      var dispatch = _ref5.dispatch;
+      var dispatch = _ref4.dispatch;
       this.commit("setLoading", true);
-      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/createTicket"), payload).then(function (response) {
-        dispatch("getTickets", response.data.project_id);
-        dispatch("getProjects");
-        dispatch("getLoggedUser");
+      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/assign-developer-to-ticket"), payload).then(function (response) {
+        dispatch("getTicketWithDetails", payload.ticket_id);
 
         _this5.commit("setLoading", false);
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    createUser: function createUser(_ref6, payload) {
-      var _this6 = this;
-
-      var dispatch = _ref6.dispatch;
-      this.commit("setLoading", true);
-      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/createUser"), payload).then(function () {
-        dispatch("getAllUsers");
-
-        _this6.commit("setLoading", false); // console.log(response.data);
-
+    removeDeveloperFromTicket: function removeDeveloperFromTicket(_ref5, payload) {
+      var dispatch = _ref5.dispatch;
+      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/remove-developer-to-ticket"), payload).then(function () {
+        dispatch("getTicketWithDetails", payload.ticket_id);
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    addToTeam: function addToTeam(_ref7, payload) {
+    createTicket: function createTicket(_ref6, payload) {
+      var _this6 = this;
+
+      var dispatch = _ref6.dispatch;
+      this.commit("setLoading", true);
+      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/createTicket"), payload).then(function (response) {
+        dispatch("getTickets", response.data.project_id);
+        dispatch("getProjects");
+        dispatch("getLoggedUser");
+
+        _this6.commit("setLoading", false);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    createNote: function createNote(_ref7, payload) {
       var dispatch = _ref7.dispatch;
+      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/saveNote"), payload).then(function (response) {
+        dispatch("getTicketWithDetails", response.data.ticket_id);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    createUser: function createUser(_ref8, payload) {
+      var _this7 = this;
+
+      var dispatch = _ref8.dispatch;
+      this.commit("setLoading", true);
+      axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/createUser"), payload).then(function () {
+        dispatch("getAllUsers");
+
+        _this7.commit("setLoading", false);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    addToTeam: function addToTeam(_ref9, payload) {
+      var dispatch = _ref9.dispatch;
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/addTeamMember"), payload).then(function () {
         dispatch("getDevelopers", payload.project_id);
         dispatch("getFreeDevelopers", payload.project_id);
@@ -27419,8 +27505,8 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         console.log(error);
       });
     },
-    removeFromTeam: function removeFromTeam(_ref8, payload) {
-      var dispatch = _ref8.dispatch;
+    removeFromTeam: function removeFromTeam(_ref10, payload) {
+      var dispatch = _ref10.dispatch;
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/removeTeamMember"), payload).then(function () {
         dispatch("getDevelopers", payload.project_id);
         dispatch("getFreeDevelopers", payload.project_id);
@@ -27428,49 +27514,49 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         console.log(error);
       });
     },
-    updateChanges: function updateChanges(_ref9, payload) {
-      var dispatch = _ref9.dispatch;
+    updateChanges: function updateChanges(_ref11, payload) {
+      var dispatch = _ref11.dispatch;
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/updateUser"), payload).then(function (response) {
         dispatch("getAllUsers");
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    registerUser: function registerUser(_ref10, form) {
-      var _this7 = this;
+    registerUser: function registerUser(_ref12, form) {
+      var _this8 = this;
 
-      var dispatch = _ref10.dispatch;
+      var dispatch = _ref12.dispatch;
       axios.post("/api/register", form).then(function () {
-        _this7.state.errors = null;
+        _this8.state.errors = null;
 
-        _this7.$router.push({
+        _this8.$router.push({
           name: "login"
         });
       })["catch"](function (error) {
-        _this7.commit("setErrors", error.response.data.errors);
+        _this8.commit("setErrors", error.response.data.errors);
       });
     },
-    loginUser: function loginUser(_ref11, formData) {
-      var _this8 = this;
+    loginUser: function loginUser(_ref13, formData) {
+      var _this9 = this;
 
-      var dispatch = _ref11.dispatch;
+      var dispatch = _ref13.dispatch;
       axios.get("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/sanctum/csrf-cookie")).then(function () {
         // Login...
         axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/login"), formData).then(function () {
           dispatch("getLoggedUser");
           dispatch("getProjects");
-          _this8.state.errors = null;
+          _this9.state.errors = null;
           _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
             name: "dashboard"
           });
         })["catch"](function (error) {
-          _this8.commit("setErrors", error.response.data.errors); // console.log(error);
+          _this9.commit("setErrors", error.response.data.errors); // console.log(error);
 
         });
       });
     },
-    removeUser: function removeUser(_ref12, payload) {
-      var dispatch = _ref12.dispatch;
+    removeUser: function removeUser(_ref14, payload) {
+      var dispatch = _ref14.dispatch;
       this.commit("setLoading", true);
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/deleteUser"), payload).then(function (response) {
         dispatch("getAllUsers");
