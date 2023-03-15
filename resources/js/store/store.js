@@ -252,6 +252,7 @@ const store = createStore({
                 .then((response) => {
                     dispatch("getTickets", response.data.project_id);
                     dispatch("getProjects");
+                    dispatch("getLoggedUser");
                     this.commit("setLoading", false);
                 })
                 .catch((error) => {

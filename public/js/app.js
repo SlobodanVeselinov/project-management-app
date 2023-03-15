@@ -27389,6 +27389,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/createTicket"), payload).then(function (response) {
         dispatch("getTickets", response.data.project_id);
         dispatch("getProjects");
+        dispatch("getLoggedUser");
 
         _this5.commit("setLoading", false);
       })["catch"](function (error) {
