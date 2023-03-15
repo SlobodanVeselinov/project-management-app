@@ -27,31 +27,38 @@
             v-if="user.role_id == 1"
             class="lg:grid lg:grid-cols-3 lg:gap-5 md:grid md:grid-cols-2 md:gap-3"
         >
-            <div
-                v-for="project in filtered"
-                :key="project.id"
-                class="flex items-stretch w-full"
-            >
+            <div v-if="filtered.length">
                 <div
-                    class="w-full p-6 rounded shadow bg-white hover:bg-gray-100 max-w-sm lg:mb-0 mb-5"
+                    v-for="project in filtered"
+                    :key="project.id"
+                    class="flex items-stretch w-full"
                 >
-                    <h5 class="text-gray-900 leading-tight font-medium mb-5">
-                        {{ project.name.toUpperCase() }}
-                    </h5>
-                    <router-link
-                        :to="{ name: 'project', params: { id: project.id } }"
-                        active-class="border rounded border-blue-900"
-                        class="text-lg font-semibold mb-2"
+                    <div
+                        class="w-full p-6 rounded shadow bg-white hover:bg-gray-100 max-w-sm lg:mb-0 mb-5"
                     >
-                        <button
-                            type="button"
-                            class="mt-auto inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                        <h5 class="text-gray-900 leading-tight font-medium mb-5">
+                            {{ project.name.toUpperCase() }}
+                        </h5>
+                        <router-link
+                            :to="{ name: 'project', params: { id: project.id } }"
+                            active-class="border rounded border-blue-900"
+                            class="text-lg font-semibold mb-2"
                         >
-                            Details
-                        </button>
-                    </router-link>
+                            <button
+                                type="button"
+                                class="mt-auto inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                            >
+                                Details
+                            </button>
+                        </router-link>
+                    </div>
                 </div>
             </div>
+            <div v-else>
+                <p class="text-sm">
+                    There are no projects created. Create new project by clicking the button in the top right corner.
+                </p>
+            </div> 
         </div>
 
         <div
@@ -91,7 +98,8 @@
 
         <div v-else>
             You are not assigned to any projects at this time. Contact your
-            Project Manager.
+            <span v-if="user.role_id == 3">Project Manager</span>
+            <span v-if="user.role_id == 2">CEO</span>.
         </div>
     </div>
 </template>

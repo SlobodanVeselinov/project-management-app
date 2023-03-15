@@ -1170,9 +1170,6 @@ input:checked + .toggle-bg {
 .mb-1 {
   margin-bottom: 0.25rem;
 }
-.mr-10 {
-  margin-right: 2.5rem;
-}
 .block {
   display: block;
 }
@@ -1274,11 +1271,6 @@ input:checked + .toggle-bg {
 }
 .max-w-sm {
   max-width: 24rem;
-}
-.max-w-min {
-  max-width: -webkit-min-content;
-  max-width: -moz-min-content;
-  max-width: min-content;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -1382,17 +1374,8 @@ input:checked + .toggle-bg {
 .overflow-hidden {
   overflow: hidden;
 }
-.overflow-scroll {
-  overflow: scroll;
-}
-.overflow-x-auto {
-  overflow-x: auto;
-}
 .overflow-y-auto {
   overflow-y: auto;
-}
-.overflow-x-hidden {
-  overflow-x: hidden;
 }
 .overflow-x-scroll {
   overflow-x: scroll;
@@ -1499,6 +1482,10 @@ input:checked + .toggle-bg {
   --tw-bg-opacity: 1;
   background-color: rgb(49 196 141 / var(--tw-bg-opacity));
 }
+.bg-red-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(224 36 36 / var(--tw-bg-opacity));
+}
 .bg-blue-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(26 86 219 / var(--tw-bg-opacity));
@@ -1509,14 +1496,6 @@ input:checked + .toggle-bg {
 }
 .bg-white\/50 {
   background-color: rgb(255 255 255 / 0.5);
-}
-.bg-red-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 128 128 / var(--tw-bg-opacity));
-}
-.bg-red-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(224 36 36 / var(--tw-bg-opacity));
 }
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
@@ -2116,14 +2095,6 @@ input:checked + .toggle-bg {
     margin-bottom: 0px;
   }
 
-  .lg\:ml-3 {
-    margin-left: 0.75rem;
-  }
-
-  .lg\:block {
-    display: block;
-  }
-
   .lg\:flex {
     display: flex;
   }
@@ -2160,12 +2131,6 @@ input:checked + .toggle-bg {
     width: auto;
   }
 
-  .lg\:max-w-min {
-    max-width: -webkit-min-content;
-    max-width: -moz-min-content;
-    max-width: min-content;
-  }
-
   .lg\:max-w-fit {
     max-width: -webkit-fit-content;
     max-width: -moz-fit-content;
@@ -2197,12 +2162,12 @@ input:checked + .toggle-bg {
     padding: 0px;
   }
 
-  .lg\:p-3 {
-    padding: 0.75rem;
-  }
-
   .lg\:p-5 {
     padding: 1.25rem;
+  }
+
+  .lg\:p-3 {
+    padding: 0.75rem;
   }
 
   .lg\:pr-5 {

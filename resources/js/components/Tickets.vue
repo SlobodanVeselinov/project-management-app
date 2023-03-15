@@ -15,12 +15,20 @@
                 Add Ticket
             </button>
         </div>
-        <div v-for="ticket in userTickets" :key="ticket.id">
-            <Ticket 
-                :ticket="ticket" />
+        <div v-if="user.role_id == 1 || user.role_id == 2">
+             <div v-for="ticket in tickets" :key="ticket.id">
+                <Ticket 
+                    :ticket="ticket" />
+            </div>
         </div>
-        <div v-if="!userTickets.length">
-            <p class="text-sm font-semibold">No active tickets for this project.</p>
+        <div v-else>
+            <div v-for="ticket in userTickets" :key="ticket.id">
+                <Ticket 
+                    :ticket="ticket" />
+            </div>
+            <div v-if="!userTickets.length">
+                <p class="text-sm font-semibold">No active tickets for this project.</p>
+            </div>
         </div>
     </div>
 </template>

@@ -19,15 +19,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         
-        \App\Models\Project::factory(5)->create();
-        \App\Models\Ticket::factory(15)->create();
+        // \App\Models\Project::factory(5)->create();
+        // \App\Models\Ticket::factory(15)->create();
         $this->call([
             RoleSeeder::class,
             UserSeeder::class,
-            TicketUserSeeder::class,
-            ProjectUserSeeder::class,
+            // TicketUserSeeder::class,
+            // ProjectUserSeeder::class,
         ]);
-        \App\Models\User::factory(5)->create();
+        // \App\Models\User::factory(5)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
