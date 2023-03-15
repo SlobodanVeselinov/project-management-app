@@ -110,7 +110,6 @@ export default {
     },
     data() {
         return {
-            project: {},
             showDescription: false,
             showModal: false,
             showConfirmationModal: false,
@@ -118,9 +117,14 @@ export default {
     },
     computed: {
         ...mapState(["user", "assignedDevelopers", "allProjects"]),
+        project(){
+            return this.allProjects.find(
+            (project) => project.id == this.$route.params.id
+        );
+        },
     },
     methods: {
-        ...mapActions(["getDevelopers", "deleteProject"]),
+        ...mapActions(["getDevelopers", "deleteProject", "getProjects"]),
         openModal() {
             this.showModal = true;
         },
@@ -138,10 +142,8 @@ export default {
         },
     },
     mounted() {
-        this.project = this.allProjects.find(
-            (project) => project.id == this.$route.params.id
-        );
-        this.getDevelopers(this.project.id);
+        this.getDevelopers(this.$route.params.id);
+        this.getProjects();
     },
 };
 </script>

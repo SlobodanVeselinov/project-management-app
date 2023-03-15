@@ -166,7 +166,7 @@ const store = createStore({
                 });
         },
 
-        getTicketWithDetails(context, ticket_id) {
+        getTicketWithDetails( context, ticket_id) {
             axios
                 .get(`${config.apiUrl}/projects/tickets/` + ticket_id)
                 .then((response) => {
@@ -251,6 +251,7 @@ const store = createStore({
                 .post(`${config.apiUrl}/createTicket`, payload)
                 .then((response) => {
                     dispatch("getTickets", response.data.project_id);
+                    dispatch("getProjects");
                     this.commit("setLoading", false);
                 })
                 .catch((error) => {
