@@ -11,7 +11,7 @@
                     <i class="fa-solid fa-bug text-3xl"></i>
                 </router-link>
                 <span class="hidden lg:flex">Project Management</span>
-                <div class="text-sm font-normal ml-12">
+                <div class="hidden lg:flex text-sm font-normal ml-12">
                     <router-link v-if="isLoggedIn" to="/dashboard"
                         >Dashboard</router-link
                     >
@@ -19,13 +19,35 @@
             </div>
             <div>
                 <div v-if="isLoggedIn">
-                    <i class="fa-regular fa-bell mr-5 cursor-pointer"></i>
-                    <span class="text-sm sm:visible invisible">Logout</span>
-                    <span class="mr-3 ml-5 text-sm font-normal" @click="logout">
-                        <i
-                            class="fa-solid fa-arrow-right-from-bracket cursor-pointer"
-                        ></i>
-                    </span>
+                    <div class="flex">
+                        <div>
+                            <i
+                                @click="showNotificationMessage = !showNotificationMessage" 
+                                class="fa-regular fa-bell mr-5 cursor-pointer text-xs"
+                                :class = "notifications.length ? 'p-2 rounded-full bg-red-700' : ''">
+                                <span
+                                    v-if="notifications.length"
+                                    class="text-gray-100 text-xs pl-1">{{ notifications.length }}</span>
+                            </i>
+                            <div
+                                v-if="showNotificationMessage" 
+                                class="absolute bg-gray-100 mt-3 rounded">
+                                
+                                    <p
+                                        class="text-gray-600 p-3 text-sm border-b border-gray-300" 
+                                        @click="showNotificationMessage = false"
+                                        v-for="notification in notifications" :key="notification.id">
+                                            <span @click="setAsRead(notification.id)">{{ notification.data.message }}</span>
+                                    </p>
+                            </div>
+                        </div>
+                        <span class="text-sm sm:visible invisible">Logout</span>
+                        <span class="mr-3 ml-5 text-sm font-normal" @click="logout">
+                            <i
+                                class="fa-solid fa-arrow-right-from-bracket cursor-pointer"
+                            ></i>
+                        </span>
+                    </div>
                 </div>
                 <!-- <button @click="logout">logout</button> -->
                 <div v-if="!isLoggedIn">
@@ -45,15 +67,24 @@
 import { mapState, mapActions } from "vuex";
 
 export default {
+    data(){
+        return {
+            showNotificationMessage: false,
+        }
+    },
     computed: {
-        ...mapState(["isLoggedIn"]),
+        ...mapState(["isLoggedIn", "notifications"]),
     },
     methods: {
-        ...mapActions(["logout", "toggleMenu"]),
+        ...mapActions(["logout", "toggleMenu", "setNotificationAsRead"]),
+
+        setAsRead(id){
+            this.setNotificationAsRead(id)
+        },
 
         toggleM(){
             this.toggleMenu()
-        }
+        },
     },
 };
 </script>

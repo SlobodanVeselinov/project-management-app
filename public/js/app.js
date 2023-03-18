@@ -24005,13 +24005,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     closeMenu: function closeMenu() {
       this.activeLinks = false;
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)(["logout", "getLoggedUser", "toggleMenu"])),
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)(["logout", "getLoggedUser", "toggleMenu", "getNotifications"])),
   components: {
     DashboardLinks: _DashboardLinks_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)(["user", "menu"])),
   mounted: function mounted() {
     this.getLoggedUser();
+    this.getNotifications();
   }
 });
 
@@ -24052,8 +24053,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)(["isLoggedIn"])),
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)(["logout", "toggleMenu"])), {}, {
+  data: function data() {
+    return {
+      showNotificationMessage: false
+    };
+  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)(["isLoggedIn", "notifications"])),
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)(["logout", "toggleMenu", "setNotificationAsRead"])), {}, {
+    setAsRead: function setAsRead(id) {
+      this.setNotificationAsRead(id);
+    },
     toggleM: function toggleM() {
       this.toggleMenu();
     }
@@ -26132,7 +26141,7 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_8 = {
-  "class": "text-sm font-normal ml-12"
+  "class": "hidden lg:flex text-sm font-normal ml-12"
 };
 
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Dashboard");
@@ -26140,33 +26149,39 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 var _hoisted_10 = {
   key: 0
 };
+var _hoisted_11 = {
+  "class": "flex"
+};
+var _hoisted_12 = {
+  key: 0,
+  "class": "text-gray-100 text-xs pl-1"
+};
+var _hoisted_13 = {
+  key: 0,
+  "class": "absolute bg-gray-100 mt-3 rounded"
+};
+var _hoisted_14 = ["onClick"];
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "fa-regular fa-bell mr-5 cursor-pointer"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "text-sm sm:visible invisible"
 }, "Logout", -1
 /* HOISTED */
 );
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa-solid fa-arrow-right-from-bracket cursor-pointer"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_14 = [_hoisted_13];
-var _hoisted_15 = {
+var _hoisted_17 = [_hoisted_16];
+var _hoisted_18 = {
   key: 1
 };
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("LogIn");
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("LogIn");
 
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Register");
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Register");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
@@ -26196,17 +26211,42 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_ctx.isLoggedIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [_hoisted_11, _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_ctx.isLoggedIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+    onClick: _cache[1] || (_cache[1] = function ($event) {
+      return $data.showNotificationMessage = !$data.showNotificationMessage;
+    }),
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["fa-regular fa-bell mr-5 cursor-pointer text-xs", _ctx.notifications.length ? 'p-2 rounded-full bg-red-700' : ''])
+  }, [_ctx.notifications.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.notifications.length), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
+  /* CLASS */
+  ), $data.showNotificationMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.notifications, function (notification) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", {
+      "class": "text-gray-600 p-3 text-sm border-b border-gray-300",
+      onClick: _cache[2] || (_cache[2] = function ($event) {
+        return $data.showNotificationMessage = false;
+      }),
+      key: notification.id
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+      onClick: function onClick($event) {
+        return $options.setAsRead(notification.id);
+      }
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(notification.data.message), 9
+    /* TEXT, PROPS */
+    , _hoisted_14)]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     "class": "mr-3 ml-5 text-sm font-normal",
-    onClick: _cache[1] || (_cache[1] = function () {
+    onClick: _cache[3] || (_cache[3] = function () {
       return _ctx.logout && _ctx.logout.apply(_ctx, arguments);
     })
-  }, _hoisted_14)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button @click=\"logout\">logout</button> "), !_ctx.isLoggedIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  }, _hoisted_17)])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button @click=\"logout\">logout</button> "), !_ctx.isLoggedIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     "class": "mr-3 text-sm font-normal",
     to: "/login"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_16];
+      return [_hoisted_19];
     }),
     _: 1
     /* STABLE */
@@ -26216,7 +26256,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     to: "/register"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_17];
+      return [_hoisted_20];
     }),
     _: 1
     /* STABLE */
@@ -27276,7 +27316,8 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       userTickets: null,
       ticket: null,
       menu: true,
-      notes: null
+      notes: null,
+      notifications: null
     };
   },
   mutations: {
@@ -27323,6 +27364,9 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
     },
     toggleMenu: function toggleMenu(state) {
       state.menu = !state.menu;
+    },
+    setNotifications: function setNotifications(state, payload) {
+      state.notifications = payload;
     }
   },
   actions: {
@@ -27439,31 +27483,50 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         console.log(error);
       });
     },
-    assignDeveloper: function assignDeveloper(_ref4, payload) {
+    getNotifications: function getNotifications(context) {
+      axios.get("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/get-notifications/")).then(function (response) {
+        // console.log(response.data)
+        context.commit("setNotifications", response.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    setNotificationAsRead: function setNotificationAsRead(_ref4, id) {
+      var dispatch = _ref4.dispatch;
+      // console.log(payload);
+      axios.get("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/set-notification-as-read/") + id).then(function (response) {
+        dispatch("getNotifications");
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    assignDeveloper: function assignDeveloper(_ref5, payload) {
       var _this5 = this;
 
-      var dispatch = _ref4.dispatch;
+      var dispatch = _ref5.dispatch;
       this.commit("setLoading", true);
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/assign-developer-to-ticket"), payload).then(function (response) {
         dispatch("getTicketWithDetails", payload.ticket_id);
+        dispatch("getNotifications");
 
         _this5.commit("setLoading", false);
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    removeDeveloperFromTicket: function removeDeveloperFromTicket(_ref5, payload) {
-      var dispatch = _ref5.dispatch;
+    removeDeveloperFromTicket: function removeDeveloperFromTicket(_ref6, payload) {
+      var dispatch = _ref6.dispatch;
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/remove-developer-to-ticket"), payload).then(function () {
         dispatch("getTicketWithDetails", payload.ticket_id);
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    createTicket: function createTicket(_ref6, payload) {
+    createTicket: function createTicket(_ref7, payload) {
       var _this6 = this;
 
-      var dispatch = _ref6.dispatch;
+      var dispatch = _ref7.dispatch;
       this.commit("setLoading", true);
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/createTicket"), payload).then(function (response) {
         dispatch("getTickets", response.data.project_id);
@@ -27475,18 +27538,18 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         console.log(error);
       });
     },
-    createNote: function createNote(_ref7, payload) {
-      var dispatch = _ref7.dispatch;
+    createNote: function createNote(_ref8, payload) {
+      var dispatch = _ref8.dispatch;
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/saveNote"), payload).then(function (response) {
         dispatch("getTicketWithDetails", response.data.ticket_id);
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    createUser: function createUser(_ref8, payload) {
+    createUser: function createUser(_ref9, payload) {
       var _this7 = this;
 
-      var dispatch = _ref8.dispatch;
+      var dispatch = _ref9.dispatch;
       this.commit("setLoading", true);
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/createUser"), payload).then(function () {
         dispatch("getAllUsers");
@@ -27496,8 +27559,8 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         console.log(error);
       });
     },
-    addToTeam: function addToTeam(_ref9, payload) {
-      var dispatch = _ref9.dispatch;
+    addToTeam: function addToTeam(_ref10, payload) {
+      var dispatch = _ref10.dispatch;
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/addTeamMember"), payload).then(function () {
         dispatch("getDevelopers", payload.project_id);
         dispatch("getFreeDevelopers", payload.project_id);
@@ -27505,8 +27568,8 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         console.log(error);
       });
     },
-    removeFromTeam: function removeFromTeam(_ref10, payload) {
-      var dispatch = _ref10.dispatch;
+    removeFromTeam: function removeFromTeam(_ref11, payload) {
+      var dispatch = _ref11.dispatch;
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/removeTeamMember"), payload).then(function () {
         dispatch("getDevelopers", payload.project_id);
         dispatch("getFreeDevelopers", payload.project_id);
@@ -27514,18 +27577,18 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         console.log(error);
       });
     },
-    updateChanges: function updateChanges(_ref11, payload) {
-      var dispatch = _ref11.dispatch;
+    updateChanges: function updateChanges(_ref12, payload) {
+      var dispatch = _ref12.dispatch;
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/updateUser"), payload).then(function (response) {
         dispatch("getAllUsers");
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    registerUser: function registerUser(_ref12, form) {
+    registerUser: function registerUser(_ref13, form) {
       var _this8 = this;
 
-      var dispatch = _ref12.dispatch;
+      var dispatch = _ref13.dispatch;
       axios.post("/api/register", form).then(function () {
         _this8.state.errors = null;
 
@@ -27536,10 +27599,10 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         _this8.commit("setErrors", error.response.data.errors);
       });
     },
-    loginUser: function loginUser(_ref13, formData) {
+    loginUser: function loginUser(_ref14, formData) {
       var _this9 = this;
 
-      var dispatch = _ref13.dispatch;
+      var dispatch = _ref14.dispatch;
       axios.get("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/sanctum/csrf-cookie")).then(function () {
         // Login...
         axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/login"), formData).then(function () {
@@ -27555,8 +27618,8 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         });
       });
     },
-    removeUser: function removeUser(_ref14, payload) {
-      var dispatch = _ref14.dispatch;
+    removeUser: function removeUser(_ref15, payload) {
+      var dispatch = _ref15.dispatch;
       this.commit("setLoading", true);
       axios.post("".concat(_axios_config__WEBPACK_IMPORTED_MODULE_2__["default"].apiUrl, "/deleteUser"), payload).then(function (response) {
         dispatch("getAllUsers");

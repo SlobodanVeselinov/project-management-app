@@ -7,7 +7,9 @@ use App\Models\Ticket;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Notifications\TicketCreated;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\RemovedFromTicket;
 
 class TicketController extends Controller
 {
@@ -66,12 +68,25 @@ class TicketController extends Controller
         $ticket = Ticket::findOrFail($request->ticket_id);
         $ticket->users()->attach($request->developer_id);
 
+        //notifying the assigned developer about the ticket he is assigned to
+        $developer = User::find($request->developer_id);
+        $project = $ticket->project;
+        $message = "You are assigned to a new ticket for '" . $project->name . "'!";
+        $developer->notify(new TicketCreated($message, $project, $request->ticket_id));
+
         return $ticket;
     }
 
      public function removeDeveloper(Request $request){
         $ticket = Ticket::findOrFail($request->ticket_id);
         $ticket->users()->detach($request->developer_id);
+
+        //notify the developer that he is removed from ticket
+        $developer = User::find($request->developer_id);
+        $message = "You are removed from a ticket - " . $ticket->title . " in " . $ticket->project->name;
+
+        $developer->notify(new RemovedFromTicket($message));
+
 
         return $ticket;
     }

@@ -21,6 +21,7 @@ const store = createStore({
             ticket: null,
             menu: true,
             notes: null,
+            notifications: null,
         };
     },
 
@@ -70,14 +71,21 @@ const store = createStore({
         setTickets(state, payload) {
             state.userTickets = payload;
         },
+
         setTicket(state, payload) {
             state.ticket = payload;
         },
-        setNotes(state, payload){
+
+        setNotes(state, payload) {
             state.notes = payload;
         },
+
         toggleMenu(state) {
             state.menu = !state.menu;
+        },
+
+        setNotifications(state, payload){
+            state.notifications = payload;
         },
     },
 
@@ -169,7 +177,7 @@ const store = createStore({
                 });
         },
 
-        getTicketWithDetails({dispatch}, ticket_id) {
+        getTicketWithDetails({ dispatch }, ticket_id) {
             axios
                 .get(`${config.apiUrl}/projects/tickets/` + ticket_id)
                 .then((response) => {
@@ -231,12 +239,38 @@ const store = createStore({
                 });
         },
 
+        getNotifications(context) {
+            axios
+                .get(`${config.apiUrl}/get-notifications/`)
+                .then((response) => {
+                    // console.log(response.data)
+                    context.commit("setNotifications", response.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
+        setNotificationAsRead({ dispatch }, id){
+            // console.log(payload);
+            axios
+                .get(`${config.apiUrl}/set-notification-as-read/` + id)
+                .then((response) => {
+                    dispatch("getNotifications");
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
         assignDeveloper({ dispatch }, payload) {
             this.commit("setLoading", true);
             axios
                 .post(`${config.apiUrl}/assign-developer-to-ticket`, payload)
                 .then((response) => {
                     dispatch("getTicketWithDetails", payload.ticket_id);
+                    dispatch("getNotifications");
                     this.commit("setLoading", false);
                 })
                 .catch((error) => {

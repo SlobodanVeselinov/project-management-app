@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\RolesController;
 use App\Http\Controllers\Api\TicketController;
 use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\Api\NotificationController;
 
 
 
@@ -41,6 +42,9 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/saveNote', [NoteController::class, 'createNote']);
     Route::get('/ticket/{ticket_id}/notes', [NoteController::class, 'getNotes']);
 
+    //Notifications
+    Route::get('/get-notifications', [NotificationController::class, 'getNotifications']);
+    Route::get('/set-notification-as-read/{id}', [NotificationController::class, 'setAsRead']);
 
 
     Route::post('/addTeamMember', [ProjectController::class, 'addTeamMember']);
