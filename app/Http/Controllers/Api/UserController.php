@@ -20,7 +20,7 @@ class UserController extends Controller
     }
 
     public function getAllUsers(){
-        return User::with('role')->orderBy('role_id', 'asc')->get();
+        return User::with('role')->orderBy('isActive', 'desc')->get();
     }
 
     public function getAllDevelopers(){
